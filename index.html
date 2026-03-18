@@ -14,6 +14,7 @@
             --blue: #3b82f6;
             --green: #2db67c;
             --purple: #a855f7;
+            --orange: #f59e0b;
             --text-muted: #888;
         }
 
@@ -26,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. High-End Background Effects */
+        /* 1. Background Effects */
         .bg-mesh {
             position: fixed; inset: 0; z-index: -1;
             background: 
@@ -50,7 +51,7 @@
             border-radius: 50px; font-weight: 800; border: none; cursor: pointer;
         }
 
-        /* 3. True Bento Grid Layout */
+        /* 3. Bento Grid */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -73,11 +74,10 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Tile Sizing */
-        .hero { grid-column: 1 / 3; }      /* Spans 2 columns */
-        .api-tile { grid-column: 3 / 4; }  /* Top Right */
+        .hero { grid-column: 1 / 3; }      
+        .cert-tile { grid-row: span 2; } /* Makes Certifications tile taller */
         
-        /* 4. Typography & Buttons */
+        /* 4. Typography & Elements */
         h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 15px 0; }
         h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
         .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 20px; }
@@ -90,19 +90,26 @@
             cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
         }
 
-        /* 5. Elite Certifications */
-        .cert-list { display: flex; flex-direction: column; gap: 10px; }
+        /* 5. ELITE HIGHLIGHTED CERTIFICATIONS */
+        .cert-list { display: flex; flex-direction: column; gap: 12px; }
         .cert { 
-            padding: 12px 16px; background: rgba(255,255,255,0.03); 
-            border-radius: 12px; border-left: 4px solid transparent; 
+            padding: 12px 16px; 
+            background: rgba(255,255,255,0.03); 
+            border-radius: 12px; 
+            border-left: 4px solid transparent;
+            transition: 0.3s ease;
         }
-        .cert strong { display: block; font-size: 0.9rem; }
+        .cert:hover { background: rgba(255, 255, 255, 0.08); transform: translateX(5px); }
+        .cert strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
         .cert span { font-size: 0.75rem; color: var(--text-muted); }
-        .c-blue { border-left-color: var(--blue); }
-        .c-purple { border-left-color: var(--purple); }
-        .c-green { border-left-color: var(--green); }
 
-        /* 6. Technical Arsenal (Separated Pills) */
+        /* Specific Highlights */
+        .c-blue { border-left-color: var(--blue); background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); }
+        .c-purple { border-left-color: var(--purple); background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); }
+        .c-green { border-left-color: var(--green); background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); }
+        .c-orange { border-left-color: var(--orange); background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); }
+
+        /* 6. Technical Arsenal */
         .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
         .pill { 
             padding: 8px 16px; background: #000; border: 1px solid var(--border); 
@@ -111,7 +118,7 @@
         .pill.pw { border-color: var(--green); color: var(--green); }
         .pill.sl { border-color: var(--blue); color: var(--blue); }
 
-        /* 7. Floating Cloud Ecosystem (No Overlap) */
+        /* 7. Cloud Zone */
         .cloud-zone { position: relative; height: 180px; width: 100%; margin-top: 10px; }
         .orb {
             position: absolute; padding: 8px 16px; border-radius: 12px;
@@ -129,10 +136,9 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Mobile Fixes */
         @media (max-width: 900px) {
             .bento-grid { grid-template-columns: 1fr; }
-            .hero, .api-tile { grid-column: 1; }
+            .hero, .cert-tile { grid-column: 1; }
         }
     </style>
 </head>
@@ -154,21 +160,24 @@
             <button class="ai-btn" id="aiMatcher">🧠 AI Resume Matcher</button>
         </section>
 
-        <section class="tile api-tile">
-            <h3>API Integration</h3>
-            <div class="cert-list">
-                <div class="cert c-green"><strong>Postman</strong><span>E2E Validation</span></div>
-                <div class="cert c-blue"><strong>Swagger</strong><span>API Contract Testing</span></div>
-            </div>
-        </section>
-
-        <section class="tile">
-            <h3>Elite Certifications</h3>
+        <section class="tile cert-tile">
+            <h3>Elite Credentials</h3>
             <div class="cert-list">
                 <div class="cert c-blue"><strong>ISTQB® Advanced</strong><span>Technical Test Analyst</span></div>
                 <div class="cert c-purple"><strong>Salesforce AI Associate</strong><span>AI Automation Specialist</span></div>
                 <div class="cert c-green"><strong>Playwright 101</strong><span>Automation Cert</span></div>
                 <div class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></div>
+                <div class="cert c-green"><strong>AccelQ Automation</strong><span>Certified Professional</span></div>
+                <div class="cert c-orange"><strong>AWS Partner Accreditation</strong><span>Technical Specialist</span></div>
+                <div class="cert c-blue"><strong>ISTQB® Certified Tester</strong><span>Foundation Level (CTFL)</span></div>
+            </div>
+        </section>
+
+        <section class="tile">
+            <h3>API Integration</h3>
+            <div class="cert-list">
+                <div class="cert c-green"><strong>Postman</strong><span>E2E Validation</span></div>
+                <div class="cert c-blue"><strong>Swagger</strong><span>API Contract Testing</span></div>
             </div>
         </section>
 
