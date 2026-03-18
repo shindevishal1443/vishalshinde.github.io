@@ -6,6 +6,8 @@
     --blue: #3b82f6;
     --green: #2db67c;
     --purple: #a855f7;
+    --orange: #f59e0b;
+    --emerald: #10b981;
     --text-muted: #888;
 }
 
@@ -71,13 +73,13 @@ body {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Grid Spanning */
-.hero { grid-column: 1 / 3; }      /* Spans 2 columns */
-.api-tile { grid-column: 3 / 4; }  /* Top Right */
+/* Updated Spanning for 7 Certs */
+.hero { grid-column: 1 / 3; }
+.cert-tile { grid-row: span 2; } /* Makes this tile taller to fit all 7 certs */
 
 /* --- TYPOGRAPHY & BUTTONS --- */
 h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 15px 0; }
-h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
+h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
 .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 20px; }
 .hl-pw { color: var(--green); font-weight: 700; }
 .hl-ai { color: var(--purple); font-weight: 700; }
@@ -90,17 +92,28 @@ h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
 }
 .ai-btn:hover { opacity: 0.9; transform: scale(1.02); }
 
-/* --- ELITE CERTIFICATIONS --- */
-.cert-list { display: flex; flex-direction: column; gap: 10px; }
+/* --- ELITE CERTIFICATIONS (INTEGRATED HIGHLIGHTS) --- */
+.cert-list { display: flex; flex-direction: column; gap: 12px; }
 .cert { 
-    padding: 12px 16px; background: rgba(255,255,255,0.03); 
-    border-radius: 12px; border-left: 4px solid transparent; 
+    padding: 12px 16px; 
+    background: rgba(255,255,255,0.03); 
+    border-radius: 12px; 
+    border-left: 4px solid transparent; 
+    transition: 0.3s ease;
 }
-.cert strong { display: block; font-size: 0.9rem; }
+.cert:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.06);
+}
+.cert strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
 .cert span { font-size: 0.75rem; color: var(--text-muted); }
-.c-blue { border-left-color: var(--blue); }
-.c-purple { border-left-color: var(--purple); }
-.c-green { border-left-color: var(--green); }
+
+/* Specific Credential Colors */
+.c-blue { border-left-color: var(--blue); background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); }
+.c-purple { border-left-color: var(--purple); background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); }
+.c-green { border-left-color: var(--green); background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); }
+.c-orange { border-left-color: var(--orange); background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); }
+.c-emerald { border-left-color: var(--emerald); background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent); }
 
 /* --- TECHNICAL ARSENAL (PILLS) --- */
 .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -111,7 +124,7 @@ h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
 .pill.pw { border-color: var(--green); color: var(--green); }
 .pill.sl { border-color: var(--blue); color: var(--blue); }
 
-/* --- CLOUD ECOSYSTEM (ZERO OVERLAP) --- */
+/* --- CLOUD ECOSYSTEM --- */
 .cloud-zone { position: relative; height: 180px; width: 100%; margin-top: 10px; }
 .orb {
     position: absolute; padding: 8px 16px; border-radius: 12px;
@@ -127,6 +140,12 @@ h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .hero, .cert-tile { grid-column: 1; }
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
