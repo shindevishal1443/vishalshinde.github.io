@@ -4,336 +4,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishal Shinde | Software Test Engineer</title>
 
-<title>Vishal Shinde | QA Automation Engineer</title>
+<link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:#f7f9fc;
-color:#111;
-transition:0.4s;
-}
-
-.dark{
-background:#0f172a;
-color:white;
-}
-
-/* NAV */
-
-nav{
-position:fixed;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px 10%;
-backdrop-filter:blur(10px);
-background:rgba(255,255,255,0.6);
-z-index:1000;
-}
-
-.dark nav{
-background:rgba(0,0,0,0.6);
-}
-
-nav ul{
-display:flex;
-list-style:none;
-}
-
-nav li{
-margin-left:25px;
-}
-
-nav a{
-text-decoration:none;
-color:inherit;
-font-weight:500;
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:linear-gradient(135deg,#3b82f6,#9333ea);
-color:white;
-}
-
-.hero h1{
-font-size:60px;
-}
-
-.typing{
-font-size:22px;
-margin-top:10px;
-opacity:0.9;
-}
-
-.btn{
-margin-top:30px;
-padding:14px 28px;
-border-radius:8px;
-background:white;
-color:black;
-text-decoration:none;
-font-weight:bold;
-}
-
-/* SECTIONS */
-
-section{
-padding:100px 10%;
-max-width:1100px;
-margin:auto;
-}
-
-h2{
-text-align:center;
-margin-bottom:50px;
-}
-
-/* SKILLS */
-
-.skill{
-margin-bottom:15px;
-}
-
-.bar{
-height:10px;
-background:#ddd;
-border-radius:10px;
-}
-
-.bar span{
-display:block;
-height:10px;
-background:#3b82f6;
-border-radius:10px;
-}
-
-/* PROJECT GRID */
-
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-}
-
-.dark .card{
-background:#1e293b;
-}
-
-/* EXPERIENCE */
-
-.exp{
-padding:25px;
-margin-bottom:20px;
-border-left:4px solid #3b82f6;
-background:white;
-}
-
-.dark .exp{
-background:#1e293b;
-}
-
-/* CONTACT */
-
-.contact{
-text-align:center;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:25px;
-background:#111827;
-color:white;
-margin-top:50px;
-}
-
-</style>
+<!-- Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 
 </head>
 
 <body>
 
+<div id="particles-js"></div>
+<div class="cursor-glow"></div>
+
+<header class="hero">
 <nav>
-
-<h3>Vishal</h3>
-
+<h2>Vishal</h2>
 <ul>
 <li><a href="#about">About</a></li>
 <li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
-<li><a href="#experience">Experience</a></li>
-<li><a href="#contact">Contact</a></li>
+<li><a href="#timeline">Experience</a></li>
+<li><a href="#certifications">Certifications</a></li>
 </ul>
-
 <button onclick="toggleTheme()">🌙</button>
-
 </nav>
 
-<div class="hero">
-
+<div class="hero-text animate fade-in">
 <h1>Vishal Shinde</h1>
-
-<p class="typing" id="typing"></p>
-
-<a href="resume.pdf" class="btn">Download Resume</a>
-
+<p id="typing"></p>
+<button onclick="speakIntro()">🎤 Voice Intro</button>
 </div>
+</header>
 
-<section id="about">
-
+<section id="about" class="animate fade-in">
 <h2>About Me</h2>
-
-<p>
-Software Test Engineer with 4.5+ years experience in Manual and Automation Testing.
-Specialized in Selenium, Playwright, Appium, and API testing. Passionate about improving
-software quality through robust automation frameworks.
-</p>
-
+<p>Software Test Engineer with 4.5+ years experience in Selenium, Playwright, API Automation, Appium, and Java automation frameworks.</p>
 </section>
 
-<section id="skills">
-
-<h2>Skills</h2>
-
-<div class="skill">Manual Testing</div>
-<div class="bar"><span style="width:95%"></span></div>
-
-<div class="skill">Selenium Automation</div>
-<div class="bar"><span style="width:90%"></span></div>
-
-<div class="skill">Playwright</div>
-<div class="bar"><span style="width:85%"></span></div>
-
-<div class="skill">API Testing</div>
-<div class="bar"><span style="width:85%"></span></div>
-
-<div class="skill">Mobile Testing (Appium)</div>
-<div class="bar"><span style="width:75%"></span></div>
-
+<section id="skills" class="animate slide-in-left">
+<h2>Automation Skills</h2>
+<canvas id="skillsCloud" width="800" height="500"></canvas>
 </section>
 
-<section id="projects">
-
-<h2>QA Automation Projects</h2>
-
-<div class="projects">
-
-<div class="card">
-<h3>Selenium Automation Framework</h3>
-<p>
-Developed test automation framework using Selenium WebDriver + Java
-with Page Object Model.
-</p>
-</div>
-
-<div class="card">
-<h3>API Automation Testing</h3>
-<p>
-Automated REST API tests using Postman collections
-and validation scripts.
-</p>
-</div>
-
-<div class="card">
-<h3>Mobile Automation</h3>
-<p>
-Automated Android application testing using Appium framework.
-</p>
-</div>
-
-</div>
-
+<section class="animate fade-in">
+<h2>3D Skill Galaxy</h2>
+<canvas id="skillGalaxy"></canvas>
 </section>
 
-<section id="experience">
-
-<h2>Experience</h2>
-
-<div class="exp">
-<h3>Software Test Engineer</h3>
-<p>
-4.5+ years of experience in functional testing,
-regression testing, API testing and automation testing.
-</p>
+<section id="projects" class="animate slide-in-right">
+<h2>Projects</h2>
+<div class="project-grid">
+<div class="project"> <h3>Selenium Automation Framework</h3> <p>POM automation framework.</p> </div>
+<div class="project"> <h3>API Automation</h3> <p>REST API testing automation.</p> </div>
+<div class="project"> <h3>Mobile Automation</h3> <p>Android testing with Appium.</p> </div>
 </div>
-
 </section>
 
-<section id="contact" class="contact">
-
-<h2>Contact</h2>
-
-<p>Email: your-email@gmail.com</p>
-
-<p>LinkedIn: linkedin.com/in/yourprofile</p>
-
-<p>GitHub: github.com/yourgithub</p>
-
+<section id="timeline" class="animate fade-in">
+<h2>Experience Timeline</h2>
+<div class="timeline">
+<div class="timeline-item"> <h3>2021</h3> <p>Started career as Software Test Engineer</p> </div>
+<div class="timeline-item"> <h3>2022</h3> <p>Built Selenium Automation Framework</p> </div>
+<div class="timeline-item"> <h3>2024</h3> <p>Worked on Playwright & API Automation</p> </div>
+<div class="timeline-item"> <h3>2025</h3> <p>Senior QA Automation Engineer</p> </div>
+</div>
 </section>
 
-<footer>
+<section class="animate fade-in">
+<h2>Automation Testing Simulator</h2>
+<button onclick="simulate('Login Test')">Run Login Test</button>
+<button onclick="simulate('Search Test')">Run Search Test</button>
+<button onclick="simulate('Checkout Test')">Run Checkout Test</button>
+<div id="simulator"></div>
+</section>
 
-© 2026 Vishal Shinde
+<section class="animate fade-in">
+<h2>QA Automation Dashboard</h2>
+<canvas id="qaChart"></canvas>
+</section>
 
-</footer>
+<section class="animate fade-in">
+<h2>Bug Tracker</h2>
+<input id="bugInput" placeholder="Enter bug">
+<button onclick="addBug()">Add Bug</button>
+<ul id="bugList"></ul>
+</section>
+
+<section class="animate fade-in">
+<h2>AI Resume Analyzer</h2>
+<textarea id="jd" placeholder="Paste Job Description"></textarea>
+<button onclick="analyzeJD()">Analyze Match</button>
+<div id="jdResult"></div>
+</section>
+
+<section class="animate fade-in">
+<h2>GitHub Projects</h2>
+<div id="repos" class="project-grid"></div>
+</section>
+
+<section class="animate fade-in">
+<h2>GitHub Stats</h2>
+<img src="https://github-readme-stats.vercel.app/api?username=shindevishal1443&show_icons=true">
+</section>
+
+<section class="animate fade-in">
+<h2>Project Map</h2>
+<div id="map"></div>
+</section>
+
+<section id="certifications" class="animate fade-in">
+<h2>Certifications</h2>
+<div class="cert-grid">
+<div class="cert">ISTQB</div>
+<div class="cert">AWS Cloud Practitioner</div>
+<div class="cert">Playwright 101</div>
+</div>
+</section>
+
+<section class="animate slide-in-left">
+<h2>Interactive Automation Framework</h2>
+<canvas id="framework3D"></canvas>
+<button onclick="simulate('Login Test')">Run Live Selenium Test Demo</button>
+</section>
+
+<footer>© 2026 Vishal Shinde</footer>
 
 <script>
+// Dark mode
+function toggleTheme(){document.body.classList.toggle("dark")}
 
-/* DARK MODE */
+// Typing animation
+const text="QA Automation Engineer | Selenium | Playwright | API Testing"; let i=0;
+function type(){if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,60)}}; type();
 
-function toggleTheme(){
-document.body.classList.toggle("dark")
+// Particle background
+particlesJS("particles-js",{particles:{number:{value:60}}});
+
+// Tilt projects
+VanillaTilt.init(document.querySelectorAll(".project"));
+
+// QA Dashboard
+new Chart(document.getElementById("qaChart"),{type:'bar', data:{labels:["Manual","Selenium","Playwright","API","Appium"],datasets:[{label:"Skill Level",data:[95,90,85,85,75]}]}});
+
+// Test simulator
+function simulate(test){let sim=document.getElementById("simulator"); sim.innerHTML="Running "+test+"..."; setTimeout(()=>{sim.innerHTML=test+" Passed"},2000)}
+
+// Bug Tracker
+function addBug(){let bug=document.getElementById("bugInput").value; let li=document.createElement("li"); li.innerText=bug; document.getElementById("bugList").appendChild(li)}
+
+// JD Analyzer
+function analyzeJD(){let jd=document.getElementById("jd").value.toLowerCase(); let score=0; if(jd.includes("selenium")) score+=20; if(jd.includes("automation")) score+=20; if(jd.includes("api")) score+=20; if(jd.includes("java")) score+=20; if(jd.includes("testing")) score+=20; document.getElementById("jdResult").innerHTML="Match Score: "+score+"%"}
+
+// GitHub repos
+fetch("https://api.github.com/users/shindevishal1443/repos").then(res=>res.json()).then(data=>{
+let container=document.getElementById("repos");
+data.slice(0,6).forEach(repo=>{container.innerHTML+=`<div class="project"><h3>${repo.name}</h3><p>${repo.description||"Automation project"}</p></div>`})
+});
+
+// Map
+const map=L.map('map').setView([20,0],2)
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+// 3D Skill Galaxy
+const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(75,window.innerWidth/400,0.1,1000), renderer=new THREE.WebGLRenderer({canvas:skillGalaxy});
+renderer.setSize(window.innerWidth,400); const geometry=new THREE.SphereGeometry(0.2,32,32); const material=new THREE.MeshBasicMaterial({color:0x6366f1});
+for(let i=0;i<30;i++){let star=new THREE.Mesh(geometry,material); star.position.set((Math.random()-0.5)*10,(Math.random()-0.5)*10,(Math.random()-0.5)*10); scene.add(star)}
+camera.position.z=5;
+function animate(){requestAnimationFrame(animate); scene.rotation.y+=0.002; renderer.render(scene,camera)}
+animate();
+
+// 3D Automation Framework Diagram
+const fwScene=new THREE.Scene(), fwCamera=new THREE.PerspectiveCamera(75,window.innerWidth/400,0.1,1000), fwRenderer=new THREE.WebGLRenderer({canvas:framework3D});
+fwRenderer.setSize(window.innerWidth,400);
+const fwCube=new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial({color:0x2563eb,wireframe:true}));
+fwScene.add(fwCube); fwCamera.position.z=5;
+function fwAnimate(){requestAnimationFrame(fwAnimate); fwCube.rotation.x+=0.01; fwCube.rotation.y+=0.01; fwRenderer.render(fwScene,fwCamera)}
+fwAnimate();
+
+// Voice intro
+function speakIntro(){let msg=new SpeechSynthesisUtterance("Hello! I am Vishal Shinde, QA Automation Engineer with 4.5 years of experience."); window.speechSynthesis.speak(msg);}
+
+// Smooth scroll
+document.querySelectorAll('nav a').forEach(link => {link.addEventListener('click', e => {e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'})})})
+
+// Section animations
+const observer = new IntersectionObserver(entries => {entries.forEach(entry => {if(entry.isIntersecting){entry.target.classList.add('show')}})}, {threshold:0.2});
+document.querySelectorAll('.animate').forEach(section => {observer.observe(section)});
+
+// Floating Skills Cloud
+const canvas = document.getElementById('skillsCloud');
+const ctx = canvas.getContext('2d');
+const skills = ['Selenium','Playwright','API','Appium','Java','TestNG'];
+const nodes = [];
+skills.forEach((s,i)=>{
+  let angle=Math.random()*2*Math.PI;
+  let radius=150+Math.random()*50;
+  nodes.push({x:400+radius*Math.cos(angle), y:250+radius*Math.sin(angle), label:s})
+});
+function drawCloud(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,25,0,2*Math.PI);ctx.fillStyle='#2563eb';ctx.fill();ctx.fillStyle='white';ctx.font='14px Arial';ctx.textAlign='center';ctx.fillText(n.label,n.x,n.y+5)})
+  requestAnimationFrame(drawCloud);
 }
-
-/* TYPING ANIMATION */
-
-const text="QA Automation Engineer | Selenium | Playwright | API Testing"
-
-let i=0
-
-function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i)
-i++
-setTimeout(type,60)
-}
-}
-
-type()
-
+drawCloud();
 </script>
 
 </body>
