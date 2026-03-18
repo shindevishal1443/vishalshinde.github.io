@@ -4,11 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vishal Shinde | Software Test Engineer</title>
+<title>Vishal Shinde | QA Automation Engineer</title>
 
 <link rel="stylesheet" href="style.css">
-
-<!-- Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -41,6 +39,8 @@
 <p id="typing"></p>
 <button onclick="speakIntro()">🎤 Voice Intro</button>
 </div>
+
+<canvas id="heroParticles"></canvas>
 </header>
 
 <section id="about" class="animate fade-in">
@@ -136,85 +136,6 @@
 
 <footer>© 2026 Vishal Shinde</footer>
 
-<script>
-// Dark mode
-function toggleTheme(){document.body.classList.toggle("dark")}
-
-// Typing animation
-const text="QA Automation Engineer | Selenium | Playwright | API Testing"; let i=0;
-function type(){if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,60)}}; type();
-
-// Particle background
-particlesJS("particles-js",{particles:{number:{value:60}}});
-
-// Tilt projects
-VanillaTilt.init(document.querySelectorAll(".project"));
-
-// QA Dashboard
-new Chart(document.getElementById("qaChart"),{type:'bar', data:{labels:["Manual","Selenium","Playwright","API","Appium"],datasets:[{label:"Skill Level",data:[95,90,85,85,75]}]}});
-
-// Test simulator
-function simulate(test){let sim=document.getElementById("simulator"); sim.innerHTML="Running "+test+"..."; setTimeout(()=>{sim.innerHTML=test+" Passed"},2000)}
-
-// Bug Tracker
-function addBug(){let bug=document.getElementById("bugInput").value; let li=document.createElement("li"); li.innerText=bug; document.getElementById("bugList").appendChild(li)}
-
-// JD Analyzer
-function analyzeJD(){let jd=document.getElementById("jd").value.toLowerCase(); let score=0; if(jd.includes("selenium")) score+=20; if(jd.includes("automation")) score+=20; if(jd.includes("api")) score+=20; if(jd.includes("java")) score+=20; if(jd.includes("testing")) score+=20; document.getElementById("jdResult").innerHTML="Match Score: "+score+"%"}
-
-// GitHub repos
-fetch("https://api.github.com/users/shindevishal1443/repos").then(res=>res.json()).then(data=>{
-let container=document.getElementById("repos");
-data.slice(0,6).forEach(repo=>{container.innerHTML+=`<div class="project"><h3>${repo.name}</h3><p>${repo.description||"Automation project"}</p></div>`})
-});
-
-// Map
-const map=L.map('map').setView([20,0],2)
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-// 3D Skill Galaxy
-const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(75,window.innerWidth/400,0.1,1000), renderer=new THREE.WebGLRenderer({canvas:skillGalaxy});
-renderer.setSize(window.innerWidth,400); const geometry=new THREE.SphereGeometry(0.2,32,32); const material=new THREE.MeshBasicMaterial({color:0x6366f1});
-for(let i=0;i<30;i++){let star=new THREE.Mesh(geometry,material); star.position.set((Math.random()-0.5)*10,(Math.random()-0.5)*10,(Math.random()-0.5)*10); scene.add(star)}
-camera.position.z=5;
-function animate(){requestAnimationFrame(animate); scene.rotation.y+=0.002; renderer.render(scene,camera)}
-animate();
-
-// 3D Automation Framework Diagram
-const fwScene=new THREE.Scene(), fwCamera=new THREE.PerspectiveCamera(75,window.innerWidth/400,0.1,1000), fwRenderer=new THREE.WebGLRenderer({canvas:framework3D});
-fwRenderer.setSize(window.innerWidth,400);
-const fwCube=new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial({color:0x2563eb,wireframe:true}));
-fwScene.add(fwCube); fwCamera.position.z=5;
-function fwAnimate(){requestAnimationFrame(fwAnimate); fwCube.rotation.x+=0.01; fwCube.rotation.y+=0.01; fwRenderer.render(fwScene,fwCamera)}
-fwAnimate();
-
-// Voice intro
-function speakIntro(){let msg=new SpeechSynthesisUtterance("Hello! I am Vishal Shinde, QA Automation Engineer with 4.5 years of experience."); window.speechSynthesis.speak(msg);}
-
-// Smooth scroll
-document.querySelectorAll('nav a').forEach(link => {link.addEventListener('click', e => {e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'})})})
-
-// Section animations
-const observer = new IntersectionObserver(entries => {entries.forEach(entry => {if(entry.isIntersecting){entry.target.classList.add('show')}})}, {threshold:0.2});
-document.querySelectorAll('.animate').forEach(section => {observer.observe(section)});
-
-// Floating Skills Cloud
-const canvas = document.getElementById('skillsCloud');
-const ctx = canvas.getContext('2d');
-const skills = ['Selenium','Playwright','API','Appium','Java','TestNG'];
-const nodes = [];
-skills.forEach((s,i)=>{
-  let angle=Math.random()*2*Math.PI;
-  let radius=150+Math.random()*50;
-  nodes.push({x:400+radius*Math.cos(angle), y:250+radius*Math.sin(angle), label:s})
-});
-function drawCloud(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,25,0,2*Math.PI);ctx.fillStyle='#2563eb';ctx.fill();ctx.fillStyle='white';ctx.font='14px Arial';ctx.textAlign='center';ctx.fillText(n.label,n.x,n.y+5)})
-  requestAnimationFrame(drawCloud);
-}
-drawCloud();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
