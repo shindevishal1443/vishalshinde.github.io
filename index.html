@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishal Shinde | Software Test Engineer</title>
-    <!-- Essential Libraries -->
+    <title>Vishal Shinde | Portfolio</title>
+    <!-- Essential Fonts & Libraries -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net"></script>
     <link rel="stylesheet" href="style.css">
@@ -29,11 +29,11 @@
         <section class="tile hero">
             <span class="badge">SOFTWARE TEST ENGINEER</span>
             <h1>Vishal Shinde</h1>
-            <p class="bio">Architecting Quality for <span style="color:#fff;">Fintech, Healthcare, & E-commerce</span>. Expert in <span class="hl-pw">Selenium</span>, <span class="hl-ai">AI-Driven Testing</span>, & API Automation.</p>
+            <p class="bio">Architecting Quality for <span style="color:#fff;">Fintech & E-commerce</span>. Expert in <span class="hl-pw">Selenium</span>, <span class="hl-ai">AI-Driven Testing</span>, & API Automation.</p>
             <button class="ai-btn" onclick="openModal('aiModal')">🤖 99.6% Match Found</button>
         </section>
 
-        <!-- ELITE CREDENTIALS AREA -->
+        <!-- ELITE CREDENTIALS -->
         <section class="tile cert-tile">
             <h3>Elite Credentials</h3>
             <div class="cert-list">
@@ -43,16 +43,16 @@
                 <div class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></div>
                 <div class="cert c-purple"><strong>AccelQ Automation Expert</strong><span>Full-Stack Expert</span></div>
                 <div class="cert c-orange"><strong>AWS Partner Accreditation</strong><span>Technical Specialist</span></div>
-                <div class="cert c-blue"><strong>ISTQB® Foundation</strong><span>Certified Tester (CTFL)</span></div>
+                <div class="cert c-blue"><strong>ISTQB® Certified Tester</strong><span>Foundation Level (CTFL)</span></div>
             </div>
         </section>
 
         <!-- API INTEGRATION -->
         <section class="tile api-tile">
             <h3>API Integration</h3>
-            <div class="api-container">
-                <div class="api-row green-glow"><strong>Postman</strong><p>E2E Validation</p></div>
-                <div class="api-row blue-glow"><strong>Swagger</strong><p>API Contract Testing</p></div>
+            <div class="api-list">
+                <div class="api-item green-border"><strong>Postman</strong><p>E2E Validation</p></div>
+                <div class="api-item blue-border"><strong>Swagger</strong><p>API Contract Testing</p></div>
             </div>
         </section>
 
@@ -60,8 +60,8 @@
         <section class="tile arsenal-tile">
             <h3>Technical Arsenal</h3>
             <div class="pill-grid">
-                <span class="pill">Playwright</span>
-                <span class="pill">Selenium (Java)</span>
+                <span class="pill pw">Playwright</span>
+                <span class="pill sl">Selenium (Java)</span>
                 <span class="pill">Appium</span>
                 <span class="pill">TestNG</span>
                 <span class="pill">JMeter</span>
@@ -73,7 +73,7 @@
             </div>
         </section>
 
-        <!-- QUALITY METRICS AREA -->
+        <!-- QUALITY METRICS (With Graph Fix) -->
         <section class="tile metrics-tile">
             <div class="report-header">
                 <h3>Quality Metrics</h3>
@@ -88,7 +88,7 @@
             <p class="chart-subtext">Avg. Pass Rate: 1024 Passed / 16 Failed</p>
         </section>
 
-        <!-- OPS & CLOUD AREA -->
+        <!-- OPS & CLOUD (No Overlap) -->
         <section class="tile cloud-tile">
             <h3>Ops & Cloud</h3>
             <div class="cloud-zone">
@@ -101,26 +101,20 @@
 
     </main>
 
-    <!-- POPUPS -->
-    <div id="aiModal" class="modal"><div class="tile modal-content"><h2>99.6% Match Found</h2><button class="contact-btn" onclick="closeModal('aiModal')">Close</button></div></div>
-    <div id="contactModal" class="modal"><div class="tile modal-content"><h2>Let's Connect</h2><button class="contact-btn" onclick="closeModal('contactModal')">Close</button></div></div>
+    <!-- MODALS -->
+    <div id="aiModal" class="modal"><div class="tile modal-content"><h2>99.6% Match!</h2><p>My stack is an elite match for SDET roles.</p><button class="contact-btn" onclick="closeModal('aiModal')">Close</button></div></div>
+    <div id="contactModal" class="modal"><div class="tile modal-content"><h2>Let's Connect</h2><p>Send an email to initiate collaboration.</p><button class="contact-btn" onclick="closeModal('contactModal')">Close</button></div></div>
 
     <script>
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        window.onclick = (e) => { if (e.target.className === 'modal') e.target.style.display = 'none'; }
 
         // Quality Graph Initialization
         const ctx = document.getElementById('qualityChart').getContext('2d');
         new Chart(ctx, {
             type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [98.4, 1.6],
-                    backgroundColor: ['#10b57c', 'rgba(255,255,255,0.05)'],
-                    borderWidth: 0,
-                    cutout: '80%'
-                }]
-            },
+            data: { datasets: [{ data: [98.4, 1.6], backgroundColor: ['#2db67c', 'rgba(255,255,255,0.05)'], borderWidth: 0, cutout: '80%' }] },
             options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
     </script>
