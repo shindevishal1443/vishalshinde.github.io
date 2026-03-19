@@ -1,81 +1,63 @@
 :root {
-    --bg-black: #050505;
-    --card-bg: rgba(25, 25, 25, 0.6);
-    --border-dim: rgba(255, 255, 255, 0.1);
-    --text-main: #ffffff;
-    --text-dim: #888;
-    --neon-blue: #4facfe;
-    --neon-green: #00f2fe;
-    --neon-purple: #9d50bb;
+    --bg: #050505;
+    --card: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.08);
+    --blue: #3b82f6; --green: #10b981; --purple: #a855f7; --orange: #f97316;
 }
 
-body {
-    background: var(--bg-black);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    margin: 0; padding: 40px;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; padding: 40px; line-height: 1.6; }
 .container { max-width: 1200px; margin: 0 auto; }
 
-/* The "Glass" Effect */
+/* Dashboard Cards */
 .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-dim);
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 20px;
+    background: var(--card); backdrop-filter: blur(10px);
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 25px; margin-bottom: 20px;
+    opacity: 0; transform: translateY(20px); transition: 0.6s ease-out;
 }
+.card.show { opacity: 1; transform: translateY(0); }
 
-/* Header */
-.header-top { font-size: 12px; font-weight: bold; margin-bottom: 40px; opacity: 0.6; }
-.role { color: var(--neon-blue); font-size: 14px; font-weight: bold; }
-h1 { font-size: 48px; margin: 10px 0; }
-.green { color: #4ade80; }
-.purple { color: #c084fc; }
-
-.ai-btn {
-    background: linear-gradient(90deg, #4facfe, #00f2fe);
-    border: none; padding: 12px 25px; border-radius: 12px;
-    color: white; font-weight: bold; margin-top: 20px;
-}
+/* Text Colors */
+.green-text { color: var(--green); } .purple-text { color: var(--purple); }
+.role { color: var(--blue); font-weight: 700; font-size: 12px; letter-spacing: 1px; }
+h1 { font-size: 3.5rem; margin: 10px 0; letter-spacing: -2px; }
 
 /* Grid System */
-.grid-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+.grid-layout { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 20px; }
+h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+/* Tags & Tooltips */
+.arsenal-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { 
+    padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid; cursor: help; position: relative;
+}
+.tag.green { border-color: var(--green); color: var(--green); }
+.tag.blue { border-color: var(--blue); color: var(--blue); }
+
+.tag:hover::after {
+    content: attr(data-tip); position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
+    background: #000; padding: 5px 10px; border-radius: 5px; font-size: 10px; white-space: nowrap; z-index: 100;
 }
 
-h3 { border-bottom: 1px solid var(--border-dim); padding-bottom: 15px; margin-bottom: 20px; }
+/* Rows & Borders */
+.item-row, .cred-row { padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.02); margin-bottom: 10px; border-left: 3px solid; }
+.blue-side { border-left-color: var(--blue); }
+.green-side { border-left-color: var(--green); }
+.purple-side { border-left-color: var(--purple); }
+.orange-side { border-left-color: var(--orange); }
 
-/* Skill Tags */
-.tag {
-    border-radius: 20px; padding: 5px 15px; font-size: 14px;
-    margin: 5px; display: inline-block; border: 1px solid;
-}
-.tag.green { border-color: #4ade80; color: #4ade80; }
-.tag.blue { border-color: var(--neon-blue); color: var(--neon-blue); }
+/* Report Animation */
+.report-content { max-height: 0; overflow: hidden; transition: 0.4s; }
+.report-content.active { max-height: 200px; padding-top: 15px; }
+.progress-bg { background: #222; height: 6px; border-radius: 10px; margin: 10px 0; }
+.progress-fill { background: var(--green); width: 98%; height: 100%; }
 
-/* Credential Sidebar Items */
-.cred-item {
-    background: rgba(255,255,255,0.03);
-    padding: 15px; margin-bottom: 10px; border-radius: 10px;
-    border-left: 4px solid;
-}
-.blue-side { border-left-color: var(--neon-blue); }
-.purple-side { border-left-color: var(--neon-purple); }
-.green-side { border-left-color: #4ade80; }
-.orange-side { border-left-color: #fb923c; }
+/* Buttons & Modal */
+.ai-btn { background: var(--blue); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
+.modal-content { width: 400px; opacity: 1; transform: none; }
+input, textarea { width: 100%; background: #111; border: 1px solid #333; color: #fff; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
 
-.cred-item p { font-size: 12px; color: var(--text-dim); margin-top: 5px; }
-
-/* Ops/Cloud Cluster */
-.cloud-nodes { position: relative; height: 150px; }
-.node {
-    position: absolute; padding: 8px 15px; border-radius: 10px;
-    border: 1px solid var(--neon-blue); font-size: 12px;
-}
-.aws { top: 10%; left: 0; border-color: #fb923c; color: #fb923c; }
-.azure { top: 40%; right: 0; color: var(--neon-blue); }
-.salesforce { bottom: 10%; left: 30%; border-color: var(--neon-blue); }
+/* Responsive */
+@media (max-width: 900px) { .grid-layout { grid-template-columns: 1fr; } h1 { font-size: 2.5rem; } }
