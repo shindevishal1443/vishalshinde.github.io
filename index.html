@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishal Shinde | Software Test Engineer Portfolio</title>
+    <title>Vishal Shinde | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com" rel="stylesheet">
 </head>
 <body>
 
     <div class="container">
-        <!-- HEADER SECTION -->
+        <!-- HEADER -->
         <header class="card hero">
             <div class="header-top">VISHAL SHINDE</div>
             <span class="role">SOFTWARE TEST ENGINEER</span>
@@ -21,6 +21,28 @@
                 <button class="contact-trigger-btn" onclick="toggleModal()">Get In Touch</button>
             </div>
         </header>
+
+        <!-- FEATURED FINTECH PROJECT -->
+        <section class="card fintech-impact">
+            <div class="project-tag">FEATURED PROJECT: FINTECH TRANSFORMATION</div>
+            <div class="project-content">
+                <div class="project-text">
+                    <h3>Scalable Payment Gateway Automation</h3>
+                    <p>Led E2E quality for a high-volume payment processor. Integrated <strong>PCI-DSS compliance</strong> into the automated pipeline, ensuring 99.9% transaction reliability.</p>
+                    <ul class="impact-list">
+                        <li>Automated <strong>850+ scenarios</strong> using Playwright.</li>
+                        <li>Reduced release cycles from <strong>4 days to 6 hours</strong>.</li>
+                        <li>Identified <strong>API bottlenecks</strong> via JMeter load testing.</li>
+                    </ul>
+                </div>
+                <div class="project-tech-stack">
+                    <span class="mini-tag">Playwright</span>
+                    <span class="mini-tag">Java</span>
+                    <span class="mini-tag">JMeter</span>
+                    <span class="mini-tag">AWS</span>
+                </div>
+            </div>
+        </section>
 
         <div class="grid-layout">
             <!-- LEFT COLUMN -->
@@ -33,11 +55,11 @@
 
                 <section class="card ops-cloud">
                     <h3>Ops & Cloud</h3>
-                    <div class="cloud-nodes">
-                        <span class="node orange">AWS</span>
-                        <span class="node blue">Azure</span>
-                        <span class="node blue">Salesforce</span>
-                        <span class="node blue-dim">GCP</span>
+                    <div class="cloud-floating-zone">
+                        <span class="floating-tile aws">AWS</span>
+                        <span class="floating-tile azure">Azure</span>
+                        <span class="floating-tile salesforce">Salesforce</span>
+                        <span class="floating-tile gcp">GCP</span>
                     </div>
                 </section>
             </div>
@@ -47,20 +69,19 @@
                 <section class="card technical-arsenal">
                     <h3>Technical Arsenal</h3>
                     <div class="arsenal-grid">
-                        <span class="tag green" data-tip="Expert: 5+ years Automation">Playwright</span>
-                        <span class="tag blue" data-tip="Advanced: Lead for 3 Fintech apps">Selenium (Java)</span>
-                        <span class="tag green" data-tip="Intermediate: iOS/Android">Appium</span>
-                        <span class="tag blue" data-tip="Expert: Parallel Execution">TestNG</span>
-                        <span class="tag blue" data-tip="Advanced: Load Testing">JMeter</span>
-                        <span class="tag blue" data-tip="Intermediate: Data Seeding">MySQL</span>
-                        <span class="tag green" data-tip="Expert: CI/CD Setup">Ubuntu</span>
-                        <span class="tag blue" data-tip="Advanced: Java 17 Streams">Java</span>
-                        <span class="tag blue" data-tip="Intermediate: Node.js">JavaScript</span>
-                        <span class="tag blue" data-tip="Expert: Dependency Mgmt">Maven</span>
+                        <span class="tag green" data-tip="Expert: 5+ years">Playwright</span>
+                        <span class="tag blue" data-tip="Advanced: Lead Role">Selenium (Java)</span>
+                        <span class="tag green" data-tip="Intermediate: Mobile">Appium</span>
+                        <span class="tag blue" data-tip="Expert: CI/CD Integration">TestNG</span>
+                        <span class="tag blue" data-tip="Advanced: Performance">JMeter</span>
+                        <span class="tag blue" data-tip="Advanced: MySQL">MySQL</span>
+                        <span class="tag green" data-tip="Expert: Shell Scripting">Ubuntu</span>
+                        <span class="tag blue" data-tip="Advanced: Java 17">Java</span>
+                        <span class="tag blue" data-tip="Advanced: Node.js">JavaScript</span>
+                        <span class="tag blue" data-tip="Expert: Maven">Maven</span>
                     </div>
                 </section>
 
-                <!-- LIVE TEST REPORT TOGGLE -->
                 <section class="card report-toggle" onclick="toggleReport()">
                     <div class="report-header">
                         <div class="live-indicator"><span class="pulse"></span> LIVE TEST REPORT</div>
@@ -72,15 +93,17 @@
                             <div><small>Suites</small><br><strong>12</strong></div>
                         </div>
                         <div class="progress-bg"><div class="progress-fill"></div></div>
-                        <p class="timestamp">Last Run: <span id="time-val"></span></p>
+                        <p class="timestamp">Last Run: <span id="time-val">---</span></p>
                     </div>
                 </section>
             </div>
 
-            <!-- RIGHT COLUMN -->
+            <!-- RIGHT COLUMN: EXPANDED CERTS -->
             <aside class="card credentials">
                 <h3>Elite Credentials</h3>
                 <div class="cred-row blue-side"><strong>ISTQB® Advanced</strong><p>Technical Test Analyst</p></div>
+                <div class="cred-row green-side"><strong>ISTQB® Foundation</strong><p>Certified Tester (CTFL)</p></div>
+                <div class="cred-row purple-side"><strong>AccelQ Automation Expert</strong><p>Full-Stack Certification</p></div>
                 <div class="cred-row purple-side"><strong>Salesforce AI Associate</strong><p>AI Specialist</p></div>
                 <div class="cred-row green-side"><strong>Playwright 101</strong><p>Automation Cert</p></div>
                 <div class="cred-row blue-side"><strong>Selenium 101</strong><p>Automation Cert</p></div>
@@ -94,11 +117,11 @@
         <div class="card modal-content">
             <span class="close" onclick="toggleModal()">&times;</span>
             <h3>Contact Me</h3>
-            <form>
+            <form id="contactForm">
                 <input type="text" placeholder="Name" required>
                 <input type="email" placeholder="Email" required>
                 <textarea placeholder="Message" rows="4"></textarea>
-                <button type="submit" class="ai-btn">Send</button>
+                <button type="submit" class="ai-btn">Send Message</button>
             </form>
         </div>
     </div>
@@ -117,10 +140,10 @@
             m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        const observer = new IntersectionObserver((entries) => {
+        const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.card').forEach(c => observer.observe(c));
+        document.querySelectorAll('.card').forEach(c => obs.observe(c));
     </script>
 </body>
 </html>
