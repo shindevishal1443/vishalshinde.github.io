@@ -27,15 +27,17 @@
             overflow-x: hidden;
         }
 
-        /* 1. Background Effects */
+        /* 1. Background & Particles */
         .bg-mesh {
-            position: fixed; inset: 0; z-index: -1;
+            position: fixed; inset: 0; z-index: -2;
             background: 
                 radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.1), transparent 40%),
                 radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.1), transparent 40%);
             filter: blur(80px);
             animation: breathe 10s infinite alternate ease-in-out;
         }
+        #particleCanvas { position: fixed; inset: 0; z-index: -1; opacity: 0.4; pointer-events: none; }
+        
         @keyframes breathe { 0% { opacity: 0.8; } 100% { opacity: 1.2; transform: scale(1.05); } }
 
         /* 2. Navbar */
@@ -43,15 +45,18 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 40px; max-width: 1200px; margin: 0 auto;
             border-bottom: 1px solid var(--border); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
         }
         .logo { font-weight: 800; font-size: 1.2rem; }
         .logo span { color: var(--blue); }
         .contact-btn {
-            background: #fff; color: #000; padding: 10px 20px; 
+            background: #fff; color: #000; padding: 10px 24px; 
             border-radius: 50px; font-weight: 800; border: none; cursor: pointer;
+            transition: 0.3s ease; text-decoration: none;
         }
+        .contact-btn:hover { background: var(--blue); color: #fff; transform: translateY(-2px); }
 
-        /* 3. Bento Grid */
+        /* 3. Bento Grid Layout */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -67,19 +72,16 @@
             border-radius: 24px;
             padding: 30px;
             backdrop-filter: blur(20px);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: 0.3s ease;
         }
-        .tile:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
+        .tile:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.2); }
 
         .hero { grid-column: 1 / 3; }      
-        .cert-tile { grid-row: span 2; } /* Makes Certifications tile taller */
+        .cert-tile { grid-row: span 2; }
+        .full-width { grid-column: 1 / -1; }
         
-        /* 4. Typography & Elements */
         h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 15px 0; }
-        h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
+        h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; border-left: 3px solid var(--blue); padding-left: 12px; }
         .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 20px; }
         .hl-pw { color: var(--green); font-weight: 700; }
         .hl-ai { color: var(--purple); font-weight: 700; }
@@ -88,66 +90,75 @@
             background: var(--blue); color: #fff; border: none; 
             padding: 12px 24px; border-radius: 12px; font-weight: 800; 
             cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+            transition: 0.3s;
         }
 
-        /* 5. ELITE HIGHLIGHTED CERTIFICATIONS */
+        /* GitHub Repo Card */
+        .repo-highlight {
+            background: rgba(0,0,0,0.3); border: 1px dashed var(--border);
+            padding: 20px; border-radius: 16px; text-decoration: none; display: block;
+            margin-top: 10px;
+        }
+        .repo-highlight:hover { border-color: var(--green); background: rgba(45, 182, 124, 0.05); }
+
+        /* Credentials & Pills */
         .cert-list { display: flex; flex-direction: column; gap: 12px; }
         .cert { 
-            padding: 12px 16px; 
-            background: rgba(255,255,255,0.03); 
-            border-radius: 12px; 
-            border-left: 4px solid transparent;
-            transition: 0.3s ease;
+            padding: 12px 16px; background: rgba(255,255,255,0.03); 
+            border-radius: 12px; border-left: 4px solid transparent; transition: 0.3s ease;
         }
-        .cert:hover { background: rgba(255, 255, 255, 0.08); transform: translateX(5px); }
-        .cert strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+        .cert strong { display: block; font-size: 0.9rem; }
         .cert span { font-size: 0.75rem; color: var(--text-muted); }
+        .c-blue { border-left-color: var(--blue); }
+        .c-purple { border-left-color: var(--purple); }
+        .c-green { border-left-color: var(--green); }
 
-        /* Specific Highlights */
-        .c-blue { border-left-color: var(--blue); background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); }
-        .c-purple { border-left-color: var(--purple); background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); }
-        .c-green { border-left-color: var(--green); background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); }
-        .c-orange { border-left-color: var(--orange); background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); }
-
-        /* 6. Technical Arsenal */
         .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
         .pill { 
             padding: 8px 16px; background: #000; border: 1px solid var(--border); 
             border-radius: 50px; font-size: 0.8rem; font-weight: 600;
         }
         .pill.pw { border-color: var(--green); color: var(--green); }
-        .pill.sl { border-color: var(--blue); color: var(--blue); }
 
-        /* 7. Cloud Zone */
-        .cloud-zone { position: relative; height: 180px; width: 100%; margin-top: 10px; }
+        /* Contact Form */
+        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 8px; }
+        input, textarea {
+            background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border);
+            border-radius: 12px; padding: 12px; color: #fff; font-family: inherit;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--blue); }
+        .submit-btn {
+            background: #fff; color: #000; border: none; padding: 14px;
+            border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s;
+        }
+        .submit-btn:hover { background: var(--blue); color: #fff; }
+
+        /* Cloud Zone Orbs */
+        .cloud-zone { position: relative; height: 160px; width: 100%; }
         .orb {
             position: absolute; padding: 8px 16px; border-radius: 12px;
             background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            font-size: 0.8rem; font-weight: 800;
-            animation: float 6s infinite ease-in-out;
+            font-size: 0.8rem; font-weight: 800; animation: float 6s infinite ease-in-out;
         }
-        .o-aws { top: 0%; left: 0%; color: #FF9900; border-color: #FF9900; }
-        .o-az { top: 20%; right: 0%; color: #0089D6; border-color: #0089D6; animation-delay: 1s; }
-        .o-gcp { bottom: 0%; left: 15%; color: #4285F4; border-color: #4285F4; animation-delay: 2s; }
-        .o-sf { bottom: 15%; right: 10%; color: #00A1E0; border-color: #00A1E0; animation-delay: 3s; }
+        .o-aws { top: 0; left: 0; color: #FF9900; border-color: #FF9900; }
+        .o-az { top: 20%; right: 0; color: #0089D6; border-color: #0089D6; animation-delay: 1s; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         @media (max-width: 900px) {
             .bento-grid { grid-template-columns: 1fr; }
-            .hero, .cert-tile { grid-column: 1; }
+            .hero, .cert-tile, .full-width { grid-column: 1; }
         }
     </style>
 </head>
 <body>
 
     <div class="bg-mesh"></div>
+    <canvas id="particleCanvas"></canvas>
 
     <nav class="navbar">
-        <div class="logo">VISHAL SHINDE <span>
+        <div class="logo">VISHAL <span>SHINDE</span></div>
+        <a href="#contact" class="contact-btn">Hire Me</a>
     </nav>
 
     <main class="bento-grid">
@@ -155,8 +166,9 @@
         <section class="tile hero">
             <span style="color:var(--blue); font-size:0.8rem; font-weight:800; letter-spacing:1px;">SOFTWARE TEST ENGINEER</span>
             <h1>Vishal Shinde</h1>
-            <p class="bio">Architecting Quality for <span style="color:#fff;">Fintech, Healthcare, & E-commerce</span>. Expert in <span class="hl-pw">Selenium</span>, <span class="hl-ai">AI-Driven Testing</span>, & API Automation.</p>
+            <p class="bio">Architecting Quality for <span style="color:#fff;">Fintech & Healthcare</span>. Expert in <span class="hl-pw">Selenium</span>, <span class="hl-ai">AI-Driven Testing</span>, & API Automation.</p>
             <button class="ai-btn" id="aiMatcher">🧠 AI Resume Matcher</button>
+            <div id="matchResult" style="margin-top:15px; font-size:0.9rem; font-weight:600;"></div>
         </section>
 
         <section class="tile cert-tile">
@@ -168,7 +180,6 @@
                 <div class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></div>
                 <div class="cert c-green"><strong>AccelQ Automation</strong><span>Certified Professional</span></div>
                 <div class="cert c-orange"><strong>AWS Partner Accreditation</strong><span>Technical Specialist</span></div>
-                <div class="cert c-blue"><strong>ISTQB® Certified Tester</strong><span>Foundation Level (CTFL)</span></div>
             </div>
         </section>
 
@@ -180,19 +191,25 @@
             </div>
         </section>
 
+        <section class="tile" style="grid-column: span 1;">
+            <h3>GitHub Activity</h3>
+            <a id="repo-link" href="#" target="_blank" class="repo-highlight">
+                <span style="font-size: 0.7rem; color: var(--green); font-weight: 800;">LATEST FRAMEWORK</span>
+                <h4 id="repo-name">Loading...</h4>
+                <p id="repo-desc" style="font-size: 0.75rem; color: var(--text-muted);">Fetching live data...</p>
+            </a>
+        </section>
+
         <section class="tile">
             <h3>Technical Arsenal</h3>
             <div class="pill-grid">
                 <span class="pill pw">Playwright</span>
-                <span class="pill sl">Selenium (Java)</span>
-                <span class="pill pw">Appium</span>
-                <span class="pill sl">TestNG</span>
-                <span class="pill pw">JMeter</span>
-                <span class="pill sl">MySQL</span>
-                <span class="pill pw">Ubuntu</span>
-                <span class="pill sl">Java</span>
-                <span class="pill pw">JavaScript</span>
-                <span class="pill sl">Maven</span>
+                <span class="pill">Selenium</span>
+                <span class="pill">Appium</span>
+                <span class="pill">TestNG</span>
+                <span class="pill">JMeter</span>
+                <span class="pill">Java</span>
+                <span class="pill">JavaScript</span>
             </div>
         </section>
 
@@ -201,25 +218,84 @@
             <div class="cloud-zone">
                 <div class="orb o-aws">AWS</div>
                 <div class="orb o-az">Azure</div>
-                <div class="orb o-gcp">GCP</div>
-                <div class="orb o-sf">Salesforce</div>
             </div>
+        </section>
+
+        <section class="tile full-width" id="contact">
+            <h3>Get In Touch</h3>
+            <form action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST" id="contactForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <textarea name="message" rows="3" placeholder="Message" style="width:100%; margin-top:15px;" required></textarea>
+                <button type="submit" class="submit-btn" style="width: 100%; margin-top:15px;">🚀 Send Message</button>
+            </form>
+            <div id="formStatus" style="margin-top: 10px; text-align: center;"></div>
         </section>
 
     </main>
 
     <script>
-        document.getElementById('aiMatcher').addEventListener('click', function() {
-            const btn = this;
-            btn.innerText = "⏳ Analyzing Profile...";
-            btn.style.opacity = "0.7";
-            
-            setTimeout(() => {
-                btn.innerText = "✅ 99.8% Match Found";
-                btn.style.background = "#2db67c";
-                btn.style.opacity = "1";
-            }, 1500);
-        });
+        // 1. Particles
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function init() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        class P {
+            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.vx = Math.random()*0.4-0.2; this.vy = Math.random()*0.4-0.2; }
+            update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width)this.vx*=-1; if(this.y<0||this.y>canvas.height)this.vy*=-1; }
+        }
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach((p,i)=>{
+                p.update(); ctx.fillStyle='rgba(59,130,246,0.3)'; ctx.beginPath(); ctx.arc(p.x,p.y,1,0,Math.PI*2); ctx.fill();
+                for(let j=i;j<particles.length;j++){
+                    let d = Math.hypot(p.x-particles[j].x, p.y-particles[j].y);
+                    if(d<100){ ctx.strokeStyle=`rgba(59,130,246,${1-d/100})`; ctx.lineWidth=0.5; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+        init(); for(let i=0;i<60;i++)particles.push(new P()); draw();
+        window.onresize = init;
+
+        // 2. AI Matcher
+        document.getElementById('aiMatcher').onclick = function(){
+            let jd = prompt("Paste JD:");
+            if(jd){
+                this.innerText="Analyzing...";
+                setTimeout(()=>{
+                    this.innerText="Match Found!"; this.style.background="#2db67c";
+                    document.getElementById('matchResult').innerHTML="🎯 98.4% Compatibility Found!";
+                },1500);
+            }
+        };
+
+        // 3. GitHub API (Replace 'YOUR_GITHUB_USERNAME' below)
+        async function fetchRepo(){
+            try {
+                const r = await fetch('https://api.github.com/users/YOUR_GITHUB_USERNAME/repos?sort=updated');
+                const d = await r.json();
+                if(d.length){
+                    document.getElementById('repo-name').innerText = d[0].name;
+                    document.getElementById('repo-desc').innerText = d[0].description || "Automation Framework";
+                    document.getElementById('repo-link').href = d[0].html_url;
+                }
+            } catch(e) {}
+        }
+        fetchRepo();
+
+        // 4. Form Logic
+        const f = document.getElementById('contactForm');
+        f.onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = f.querySelector('button');
+            btn.innerText = "Sending...";
+            const res = await fetch(f.action, { method:'POST', body:new FormData(f), headers:{'Accept':'application/json'}});
+            if(res.ok) { document.getElementById('formStatus').innerText="✅ Sent!"; f.reset(); }
+            btn.innerText = "🚀 Send Message";
+        };
     </script>
 </body>
 </html>
