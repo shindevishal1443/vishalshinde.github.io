@@ -76,15 +76,26 @@
         </section>
 
         <!-- QUALITY METRICS -->
-        <section class="tile">
-            <div style="display: flex; justify-content: space-between; align-items: start;">
-                <h3>Quality Metrics</h3>
-                <span class="live-tag">● LIVE</span>
-            </div>
-            <div class="stat-value">98.4%</div>
-            <p style="font-size: 0.75rem; color: var(--text-muted);">Avg. Pass Rate across 12 CI/CD suites.</p>
-            <div class="progress-bar-bg"><div class="progress-fill"></div></div>
-        </section>
+   <!-- 5. QUALITY METRICS (With Graph) -->
+<section class="tile">
+    <div class="report-header">
+        <h3>Quality Metrics</h3>
+        <div class="live-indicator"><span class="pulse-dot"></span> LIVE</div>
+    </div>
+    
+    <!-- The Graph Container -->
+    <div class="chart-container" style="position: relative; height:150px; width:100%; margin-bottom: 10px;">
+        <canvas id="qualityChart"></canvas>
+        <div class="chart-overlay">
+            <span class="report-stat">98.4%</span>
+        </div>
+    </div>
+
+    <p style="color: var(--text-muted); font-size: 0.75rem; text-align: center; font-weight: 600;">
+        Pass Rate: 1024 Passed / 16 Failed
+    </p>
+</section>
+
 
         <!-- OPS & CLOUD -->
         <section class="tile">
