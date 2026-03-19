@@ -3,6 +3,7 @@
     --card: rgba(255, 255, 255, 0.03);
     --border: rgba(255, 255, 255, 0.08);
     --blue: #3b82f6; --green: #10b981; --purple: #a855f7; --orange: #f97316;
+    --text-dim: #94a3b8;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -11,41 +12,47 @@ body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; pad
 
 /* Dashboard Cards */
 .card {
-    background: var(--card); backdrop-filter: blur(10px);
+    background: var(--card); backdrop-filter: blur(15px);
     border: 1px solid var(--border); border-radius: 20px;
     padding: 25px; margin-bottom: 20px;
     opacity: 0; transform: translateY(20px); transition: 0.6s ease-out;
 }
 .card.show { opacity: 1; transform: translateY(0); }
 
-/* Text Colors */
-.green-text { color: var(--green); } .purple-text { color: var(--purple); }
+/* Fintech Project Styling */
+.fintech-impact { border-left: 4px solid var(--green); background: linear-gradient(90deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%); }
+.project-tag { font-size: 0.7rem; font-weight: 800; color: var(--green); letter-spacing: 2px; margin-bottom: 10px; }
+.project-content { display: flex; justify-content: space-between; gap: 30px; }
+.impact-list { margin-top: 15px; padding-left: 20px; color: var(--text-dim); font-size: 0.9rem; }
+.project-tech-stack { display: flex; flex-direction: column; gap: 8px; min-width: 120px; }
+.mini-tag { font-size: 0.7rem; padding: 4px 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); text-align: center; }
+
+/* Header & Grid */
 .role { color: var(--blue); font-weight: 700; font-size: 12px; letter-spacing: 1px; }
 h1 { font-size: 3.5rem; margin: 10px 0; letter-spacing: -2px; }
-
-/* Grid System */
 .grid-layout { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 20px; }
 h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
 
-/* Tags & Tooltips */
+/* FLOATING CLOUD TILES */
+.cloud-floating-zone { height: 180px; position: relative; overflow: hidden; }
+.floating-tile { position: absolute; padding: 10px 18px; background: rgba(59,130,246,0.1); border: 1px solid var(--blue); border-radius: 12px; font-size: 13px; color: var(--blue); animation: float-drift 4s ease-in-out infinite; }
+.aws { top: 15%; left: 5%; border-color: var(--orange); color: var(--orange); animation-delay: 0s; }
+.azure { top: 45%; right: 10%; animation-delay: 1s; }
+.salesforce { bottom: 10%; left: 20%; border-color: var(--purple); color: var(--purple); animation-delay: 2s; }
+.gcp { top: 5%; right: 5%; color: var(--text-dim); border-color: var(--border); }
+@keyframes float-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* Skills & Tools */
 .arsenal-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-.tag { 
-    padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid; cursor: help; position: relative;
-}
+.tag { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid; cursor: help; position: relative; transition: 0.3s; }
 .tag.green { border-color: var(--green); color: var(--green); }
 .tag.blue { border-color: var(--blue); color: var(--blue); }
+.tag:hover { background: rgba(255,255,255,0.1); }
+.tag:hover::after { content: attr(data-tip); position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%); background: #000; padding: 5px 10px; border-radius: 5px; font-size: 10px; white-space: nowrap; z-index: 100; border: 1px solid var(--border); }
 
-.tag:hover::after {
-    content: attr(data-tip); position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
-    background: #000; padding: 5px 10px; border-radius: 5px; font-size: 10px; white-space: nowrap; z-index: 100;
-}
-
-/* Rows & Borders */
+/* Credential Rows */
 .item-row, .cred-row { padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.02); margin-bottom: 10px; border-left: 3px solid; }
-.blue-side { border-left-color: var(--blue); }
-.green-side { border-left-color: var(--green); }
-.purple-side { border-left-color: var(--purple); }
-.orange-side { border-left-color: var(--orange); }
+.blue-side { border-left-color: var(--blue); } .green-side { border-left-color: var(--green); } .purple-side { border-left-color: var(--purple); } .orange-side { border-left-color: var(--orange); }
 
 /* Report Animation */
 .report-content { max-height: 0; overflow: hidden; transition: 0.4s; }
@@ -54,10 +61,11 @@ h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; margin-bottom: 2
 .progress-fill { background: var(--green); width: 98%; height: 100%; }
 
 /* Buttons & Modal */
-.ai-btn { background: var(--blue); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.ai-btn { background: var(--blue); color: #fff; border: none; padding: 12px 24px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.ai-btn:hover { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
 .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
 .modal-content { width: 400px; opacity: 1; transform: none; }
-input, textarea { width: 100%; background: #111; border: 1px solid #333; color: #fff; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+input, textarea { width: 100%; background: #111; border: 1px solid #333; color: #fff; padding: 12px; margin-bottom: 10px; border-radius: 8px; }
 
 /* Responsive */
-@media (max-width: 900px) { .grid-layout { grid-template-columns: 1fr; } h1 { font-size: 2.5rem; } }
+@media (max-width: 900px) { .grid-layout { grid-template-columns: 1fr; } h1 { font-size: 2.5rem; } .project-content { flex-direction: column; } }
