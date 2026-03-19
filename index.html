@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vishal Shinde | Software Test Engineer</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a modern tech look -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
 </head>
 <body>
+
     <div class="dashboard-container">
         <!-- Main Header Section -->
         <header class="glass-card main-header">
             <span class="sub-title">SOFTWARE TEST ENGINEER</span>
             <h1>Vishal Shinde</h1>
             <p>Architecting Quality for <span class="highlight">Fintech, Healthcare, & E-commerce</span>. Expert in <span class="neon-text">Selenium, AI-Driven Testing</span>, & API Automation.</p>
-            <button class="ai-btn"><span>🤖 AI Resume Matcher</span></button>
+            <div class="header-actions">
+                <button class="ai-btn">🤖 AI Resume Matcher</button>
+                <button class="contact-trigger-btn" onclick="toggleModal()">Get In Touch</button>
+            </div>
         </header>
 
         <div class="content-grid">
-            <!-- Left Column: API & Ops -->
+            <!-- Left Column -->
             <div class="col left-col">
                 <section class="glass-card">
                     <h3>API Integration</h3>
@@ -28,10 +34,10 @@
                 <section class="glass-card">
                     <h3>Ops & Cloud</h3>
                     <div class="cloud-cluster">
-                        <span class="cloud-tag aws">AWS</span>
-                        <span class="cloud-tag azure">Azure</span>
-                        <span class="cloud-tag salesforce">Salesforce</span>
-                        <span class="cloud-tag gcp">GCP</span>
+                        <span class="cloud-tag">AWS</span>
+                        <span class="cloud-tag">Azure</span>
+                        <span class="cloud-tag">Salesforce</span>
+                        <span class="cloud-tag">GCP</span>
                     </div>
                 </section>
             </div>
@@ -53,7 +59,7 @@
                 </div>
             </section>
 
-            <!-- Right Column: Credentials -->
+            <!-- Right Column: Elite Credentials -->
             <aside class="glass-card right-col">
                 <h3>Elite Credentials</h3>
                 <ul class="credential-list">
@@ -65,5 +71,53 @@
             </aside>
         </div>
     </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="glass-card modal-content">
+            <span class="close-btn" onclick="toggleModal()">&times;</span>
+            <h3>Send a Message</h3>
+            <form id="contactForm">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="your@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Message</label>
+                    <textarea rows="4" placeholder="How can I help you?"></textarea>
+                </div>
+                <button type="submit" class="ai-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts for Animations and Modal -->
+    <script>
+        // Scroll Animation Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-card').forEach((el) => observer.observe(el));
+
+        // Modal Logic
+        function toggleModal() {
+            const modal = document.getElementById('contactModal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) toggleModal();
+        }
+    </script>
 </body>
 </html>
