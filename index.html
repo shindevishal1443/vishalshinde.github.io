@@ -41,10 +41,13 @@
         }
         @keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 
-        /* --- SUPER DESIGN NAVBAR --- */
+        /* --- ALIGNED PILL NAVBAR --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 30px; max-width: 900px; margin: 20px auto;
+            padding: 12px 30px; 
+            width: 95%;
+            max-width: 1200px; /* SYNCED WITH GRID */
+            margin: 20px auto;
             border: 1px solid var(--border); border-radius: 100px;
             backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
             position: sticky; top: 20px; z-index: 1000;
@@ -70,10 +73,15 @@
         }
         .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
 
-        /* --- BENTO GRID --- */
+        /* --- BENTO GRID SYSTEM --- */
         .bento-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            max-width: 1200px; margin: 40px auto; padding: 0 20px;
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-auto-rows: minmax(140px, auto);
+            gap: 20px;
+            max-width: 1200px; 
+            margin: 40px auto; 
+            padding: 0 20px;
         }
 
         .tile {
@@ -88,10 +96,13 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .hero { grid-column: span 2; animation-delay: 0.1s; }      
-        .cert-tile { grid-row: span 2; animation-delay: 0.2s; } 
-        .metrics-tile { animation-delay: 0.3s; }
-        .arsenal-tile { grid-column: span 2; animation-delay: 0.5s; }
+        /* DESKTOP GRID MAPPING */
+        .hero { grid-column: 1 / 3; grid-row: span 2; animation-delay: 0.1s; }      
+        .cert-tile { grid-column: 3 / 4; grid-row: 1 / 5; animation-delay: 0.2s; } 
+        .metrics-tile { grid-column: 1 / 2; animation-delay: 0.3s; }
+        .api-tile { grid-column: 2 / 3; }
+        .arsenal-tile { grid-column: 1 / 3; animation-delay: 0.5s; }
+        .ops-tile { grid-column: 3 / 4; margin-top: 20px; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px) scale(0.95); }
@@ -113,15 +124,16 @@
         }
         .ai-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(59, 130, 246, 0.3); }
 
-        /* --- CERTS (SUPER BACKGROUNDS) --- */
+        /* --- COMPONENTS (FIXED OVERLAP) --- */
         .cert-list { display: flex; flex-direction: column; gap: 12px; }
         .cert { 
-            text-decoration: none; color: inherit; display: block;
+            text-decoration: none; color: inherit; 
+            display: flex; flex-direction: column; /* FIXED: Vertical stacking */
             padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent;
-            transition: 0.3s ease;
+            transition: 0.3s ease; gap: 4px;
         }
         .cert:hover { transform: translateX(8px); }
-        .cert strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+        .cert strong { display: block; font-size: 0.9rem; }
         .cert span { font-size: 0.75rem; color: var(--text-muted); }
 
         .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
@@ -129,7 +141,6 @@
         .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
         .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
 
-        /* --- CLOUD (FIXED ALIGNMENT) --- */
         .cloud-flex { display: flex; flex-wrap: wrap; gap: 10px; }
         .cloud-item {
             flex: 1 1 calc(50% - 10px); background: rgba(255,255,255,0.03);
@@ -140,7 +151,6 @@
         .o-aws { color: #FF9900; } .o-az { color: #0089D6; }
         .o-gcp { color: #4285F4; } .o-sf { color: #00A1E0; }
 
-        /* --- OTHER ELEMENTS --- */
         .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; border: 1px solid var(--border); text-align: center; }
         .metric-num { display: block; font-size: 1.6rem; font-weight: 800; color: var(--green); }
@@ -163,7 +173,7 @@
         /* --- MOBILE --- */
         @media (max-width: 900px) {
             .bento-grid { grid-template-columns: 1fr; }
-            .hero, .arsenal-tile, .cert-tile { grid-column: span 1; }
+            .hero, .cert-tile, .metrics-tile, .api-tile, .arsenal-tile, .ops-tile { grid-column: span 1; grid-row: auto; margin-top: 0; }
             .header-socials { display: none; }
             .navbar { width: 95%; }
             h1 { font-size: 2.5rem; }
@@ -218,8 +228,8 @@
             </div>
         </section>
 
-        <section class="tile">
-            <h3>API Integration</h3>
+        <section class="tile api-tile">
+            <h3>API Mastery</h3>
             <div class="cert-list">
                 <div class="cert c-green"><strong>Postman</strong><span>E2E Validation</span></div>
                 <div class="cert c-blue"><strong>Swagger</strong><span>API Contract Testing</span></div>
@@ -239,10 +249,11 @@
                 <span class="pill">Java</span>
                 <span class="pill">JavaScript</span>
                 <span class="pill">Maven</span>
+                <span class="pill">REST Assured</span>
             </div>
         </section>
 
-        <section class="tile">
+        <section class="tile ops-tile">
             <h3>Ops & Cloud</h3>
             <div class="cloud-flex">
                 <div class="cloud-item o-aws">AWS</div>
