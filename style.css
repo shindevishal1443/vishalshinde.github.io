@@ -1,93 +1,114 @@
-/* --- UPDATED SUPER DESIGN NAVBAR --- */
+/* --- ENHANCED GLASSMORPHISM NAVBAR --- */
 .navbar {
     display: flex; 
     justify-content: space-between; 
     align-items: center;
-    padding: 10px 24px; 
-    max-width: 850px; /* Slimmer profile for "Super Design" feel */
+    padding: 12px 28px; 
+    width: 95%; /* Fluid width */
+    max-width: 900px; 
     margin: 20px auto;
-    border: 1px solid rgba(255, 255, 255, 0.12); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 100px; 
-    backdrop-filter: blur(20px) saturate(160%); /* High-end frosted effect */
-    background: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(16px) saturate(180%); 
+    background: rgba(10, 10, 10, 0.6);
     position: sticky; 
     top: 20px; 
     z-index: 1000;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 0; 
-    animation: fadeInUp 1s ease forwards;
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
 }
 
-/* Subtle glowing logo */
+/* Scroll shrink effect - triggers when page moves */
+body:has(:not(:nth-child(1):target)) .navbar {
+    padding: 8px 24px;
+    background: rgba(5, 5, 5, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
 .logo { 
     font-weight: 800; 
-    font-size: 0.9rem; 
-    letter-spacing: 1px; 
+    font-size: 0.85rem; 
+    letter-spacing: 1.5px; 
     text-transform: uppercase;
-}
-.logo span { 
-    color: var(--blue); 
-    text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
 }
 
-.nav-right { display: flex; align-items: center; gap: 10px; }
+.logo span { 
+    color: var(--blue); 
+    background: linear-gradient(45deg, var(--blue), #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-right { display: flex; align-items: center; gap: 12px; }
 
 .header-socials { 
     display: flex; 
-    gap: 4px; 
-    border-right: 1px solid var(--border); 
+    gap: 2px; 
+    border-right: 1px solid rgba(255,255,255,0.1); 
     padding-right: 12px; 
 }
 
 .social-link-hdr {
     color: var(--text-muted); 
     text-decoration: none; 
-    font-size: 0.65rem;
-    font-weight: 800; 
-    padding: 8px 14px; 
+    font-size: 0.6rem;
+    font-weight: 700; 
+    padding: 10px 16px; 
     border-radius: 50px;
-    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: 0.4s;
 }
 
 .social-link-hdr:hover { 
     color: #fff; 
-    background: rgba(255,255,255,0.08); 
-    transform: translateY(-1px);
+    background: rgba(255,255,255,0.05); 
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.02);
 }
 
-/* The "Connect Me" Button - Modern Black/White Contrast */
+/* Premium Contact Button */
 .contact-btn {
     background: #fff; 
     color: #000; 
-    padding: 10px 22px; 
+    padding: 12px 24px; 
     border-radius: 50px; 
     font-weight: 800; 
     text-decoration: none;
     font-size: 0.75rem; 
-    letter-spacing: 0.5px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+    letter-spacing: 0.2px;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 0 0 0 rgba(255,255,255,0);
 }
 
 .contact-btn:hover { 
     background: var(--blue); 
     color: #fff; 
-    transform: scale(1.05) translateY(-2px);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.5);
 }
 
-/* --- HERO TYPOGRAPHY TWEAK --- */
+/* --- HERO TYPOGRAPHY: METALLIC GRADIENT --- */
 h1 { 
-    font-size: 4rem; /* Increased for impact */
-    letter-spacing: -3px; 
-    margin: 10px 0; 
-    line-height: 0.95;
-    background: linear-gradient(to bottom, #fff 60%, #888);
+    font-size: clamp(2.5rem, 8vw, 4.5rem); /* Responsive fluid font size */
+    letter-spacing: -0.05em; 
+    margin: 15px 0; 
+    line-height: 0.9;
+    font-weight: 800;
+    /* Metallic Silver Finish */
+    background: linear-gradient(180deg, #FFFFFF 0%, #A3A3A3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
 }
 
+/* Mobile Adjustments */
 @media (max-width: 900px) {
-    .navbar { width: 92%; padding: 8px 16px; }
-    h1 { font-size: 2.8rem; letter-spacing: -1.5px; }
+    .navbar { 
+        width: 94%; 
+        padding: 10px 18px; 
+        top: 15px;
+    }
+    .header-socials { display: none; } /* Hide on mobile for cleanliness */
+    h1 { letter-spacing: -0.03em; }
 }
