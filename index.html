@@ -17,18 +17,11 @@
             --purple: #a855f7;
             --orange: #f59e0b;
             --text-muted: #888;
-            --success: #00ff88;
         }
 
         /* --- 2. RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body { 
-            background: var(--bg); 
-            color: #fff; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            overflow-x: hidden;
-        }
+        body { background: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
 
         .bg-mesh {
             position: fixed; inset: 0; z-index: -1;
@@ -40,79 +33,35 @@
         }
         @keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 
-        /* --- 3. ALIGNED PILL NAVBAR (FIXED ALIGNMENT) --- */
+        /* --- 3. NAVBAR --- */
         .navbar {
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            padding: 12px 28px; 
-            width: calc(100% - 40px); /* Matches grid padding */
-            max-width: 1100px; 
-            margin: 20px auto;
-            border: 1px solid var(--border); 
-            border-radius: 100px;
-            backdrop-filter: blur(20px); 
-            background: rgba(255,255,255,0.03);
-            position: sticky; 
-            top: 20px; 
-            z-index: 1000;
-            opacity: 0; 
-            animation: fadeInUp 1s ease forwards;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 28px; width: calc(100% - 40px); max-width: 1100px; 
+            margin: 20px auto; border: 1px solid var(--border); border-radius: 100px;
+            backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
+            position: sticky; top: 20px; z-index: 1000;
+            opacity: 0; animation: fadeInUp 1s ease forwards;
         }
-
-        .logo { 
-            font-weight: 800; 
-            font-size: 0.95rem; 
-            letter-spacing: 1px; 
-            text-transform: uppercase;
-            flex-shrink: 0;
-        }
+        .logo { font-weight: 800; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
         .logo span { color: var(--blue); }
-
-        .nav-right { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-        }
-        .header-socials { 
-            display: flex; 
-            gap: 5px; 
-            border-right: 1px solid var(--border); 
-            padding-right: 15px; 
-        }
-
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+        .header-socials { display: flex; gap: 5px; border-right: 1px solid var(--border); padding-right: 15px; }
         .social-link-hdr {
-            color: var(--text-muted); 
-            text-decoration: none; 
-            font-size: 0.65rem;
-            font-weight: 700; 
-            padding: 6px 12px; 
-            border-radius: 50px;
-            transition: 0.3s;
+            color: var(--text-muted); text-decoration: none; font-size: 0.65rem;
+            font-weight: 700; padding: 6px 12px; border-radius: 50px; transition: 0.3s;
         }
-        .social-link-hdr:hover { color: #fff; background: rgba(255,255,255,0.05); }
-
+        .social-link-hdr:hover { color: #fff; background: rgba(255,255,255,0.1); }
         .contact-btn {
-            background: #fff; 
-            color: #000; 
-            padding: 10px 24px; 
-            border-radius: 50px; 
-            font-weight: 800; 
-            text-decoration: none;
-            font-size: 0.75rem; 
-            transition: 0.3s;
-            white-space: nowrap;
+            background: #fff; color: #000; padding: 10px 24px; border-radius: 50px; 
+            font-weight: 800; text-decoration: none; font-size: 0.75rem; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .contact-btn:hover { background: var(--blue); color: #fff; }
+        .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
 
-        /* --- 4. BENTO GRID SYSTEM --- */
+        /* --- 4. BENTO GRID --- */
         .bento-grid {
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px;
-            max-width: 1100px; 
-            margin: 40px auto; 
-            padding: 0 20px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            max-width: 1100px; margin: 40px auto; padding: 0 20px;
             grid-template-areas: 
                 "hero hero cert"
                 "hero hero cert"
@@ -124,13 +73,22 @@
         .tile {
             background: var(--tile); border: 1px solid var(--border);
             border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             opacity: 0; animation: fadeInUp 0.8s forwards;
-            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
+            position: relative;
+            z-index: 1;
         }
-        .tile:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
 
-        /* AREA MAPPING */
+        /* FIXED: Hover Movement for ALL tiles */
+        .tile:hover { 
+            transform: translateY(-8px) scale(1.01); 
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+
         .hero { grid-area: hero; animation-delay: 0.1s; }      
         .cert-tile { grid-area: cert; animation-delay: 0.2s; } 
         .metrics-tile { grid-area: metrics; animation-delay: 0.3s; }
@@ -138,19 +96,18 @@
         .arsenal-tile { grid-area: arsenal; animation-delay: 0.5s; }
         .ops-tile { grid-area: ops; animation-delay: 0.6s; }
 
-        /* --- 5. CONTENT STYLES --- */
+        /* --- 5. CONTENT --- */
         h1 { font-size: 3rem; margin: 10px 0; letter-spacing: -1px; }
         h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px; letter-spacing: 1px; }
 
         .cert-list { display: flex; flex-direction: column; gap: 12px; }
         .cert { 
-            display: flex; flex-direction: column; 
-            text-decoration: none; color: inherit; 
-            padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent;
-            transition: 0.3s ease; gap: 4px;
-            background: rgba(255,255,255,0.03);
+            display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; 
+            border-left: 4px solid transparent; background: rgba(255,255,255,0.03);
+            transition: 0.3s ease; gap: 4px; text-decoration: none; color: inherit;
         }
-        .cert strong { display: block; font-size: 0.85rem; line-height: 1.2; }
+        .cert:hover { transform: translateX(5px); background: rgba(255,255,255,0.08); }
+        .cert strong { display: block; font-size: 0.85rem; }
         .cert span { font-size: 0.7rem; color: var(--text-muted); }
 
         .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
@@ -169,40 +126,20 @@
         .cloud-flex { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .cloud-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; text-align: center; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border); }
 
-        /* --- 6. MOBILE RESPONSIVENESS --- */
         @media (max-width: 1000px) {
-            .navbar { width: calc(100% - 40px); }
-            .bento-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                grid-template-areas: 
-                    "hero hero"
-                    "cert cert"
-                    "metrics api"
-                    "arsenal arsenal"
-                    "ops ops";
-            }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-areas: "hero hero" "cert cert" "metrics api" "arsenal arsenal" "ops ops"; }
         }
-
         @media (max-width: 650px) {
-            .navbar { padding: 10px 20px; }
-            .bento-grid { 
-                grid-template-columns: 1fr; 
-                grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops";
-            }
+            .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops"; }
             .header-socials { display: none; }
             h1 { font-size: 2.2rem; }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-
     <div class="bg-mesh"></div>
-
     <nav class="navbar">
         <div class="logo">VISHAL <span>SHINDE</span></div>
         <div class="nav-right">
@@ -254,14 +191,10 @@
         <section class="tile arsenal-tile">
             <h3>Technical Arsenal</h3>
             <div class="pill-grid">
-                <span class="pill">Playwright</span>
-                <span class="pill">Selenium</span>
-                <span class="pill">Appium</span>
-                <span class="pill">Java</span>
-                <span class="pill">REST Assured</span>
-                <span class="pill">JMeter</span>
-                <span class="pill">MySQL</span>
-                <span class="pill">TestNG</span>
+                <span class="pill">Playwright</span><span class="pill">Selenium</span>
+                <span class="pill">Appium</span><span class="pill">Java</span>
+                <span class="pill">REST Assured</span><span class="pill">JMeter</span>
+                <span class="pill">MySQL</span><span class="pill">TestNG</span>
             </div>
         </section>
 
@@ -275,6 +208,5 @@
             </div>
         </section>
     </main>
-
 </body>
 </html>
