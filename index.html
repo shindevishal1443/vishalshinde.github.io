@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- VARIABLES --- */
+        /* --- 1. VARIABLES --- */
         :root {
             --bg: #030303;
             --tile: rgba(18, 18, 22, 0.7);
@@ -20,9 +20,9 @@
             --success: #00ff88;
         }
 
-        /* --- RESET & BASE --- */
+        /* --- 2. RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body { 
             background: var(--bg); 
             color: #fff; 
@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* --- PREMIUM BACKGROUND --- */
         .bg-mesh {
             position: fixed; inset: 0; z-index: -1;
             background: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 40%),
@@ -41,48 +40,48 @@
         }
         @keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 
-        /* --- FIXED NAVBAR --- */
+        /* --- 3. ALIGNED PILL NAVBAR --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 30px; 
-            width: calc(100% - 40px);
-            max-width: 1200px;
+            padding: 12px 28px; 
+            width: 95%; 
+            max-width: 1100px; /* SYNCED WITH GRID */
             margin: 20px auto;
             border: 1px solid var(--border); border-radius: 100px;
             backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
             position: sticky; top: 20px; z-index: 1000;
             opacity: 0; animation: fadeInUp 1s ease forwards;
         }
-        .logo { font-weight: 800; font-size: 1rem; letter-spacing: -0.5px; }
+
+        .logo { font-weight: 800; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
         .logo span { color: var(--blue); }
 
         .nav-right { display: flex; align-items: center; gap: 15px; }
         .header-socials { display: flex; gap: 5px; border-right: 1px solid var(--border); padding-right: 15px; }
-        
+
         .social-link-hdr {
-            color: var(--text-muted); text-decoration: none; font-size: 0.7rem;
+            color: var(--text-muted); text-decoration: none; font-size: 0.65rem;
             font-weight: 700; padding: 6px 12px; border-radius: 50px;
             transition: 0.3s;
         }
         .social-link-hdr:hover { color: #fff; background: rgba(255,255,255,0.05); }
 
         .contact-btn {
-            background: #fff; color: #000; padding: 8px 20px; 
+            background: #fff; color: #000; padding: 10px 24px; 
             border-radius: 50px; font-weight: 800; text-decoration: none;
-            font-size: 0.8rem; transition: 0.3s;
+            font-size: 0.75rem; transition: 0.3s;
         }
-        .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
+        .contact-btn:hover { background: var(--blue); color: #fff; }
 
-        /* --- BENTO GRID SYSTEM (FIXED ALIGNMENT) --- */
+        /* --- 4. BENTO GRID SYSTEM (INTEGRATED) --- */
         .bento-grid {
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            grid-auto-rows: auto;
             gap: 20px;
-            max-width: 1200px; 
-            margin: 0 auto 40px; 
+            max-width: 1100px; 
+            margin: 40px auto; 
             padding: 0 20px;
-            /* Explicitly define areas to prevent gaps and overlap */
+            /* Using named areas to fix the gaps seen in */
             grid-template-areas: 
                 "hero hero cert"
                 "hero hero cert"
@@ -96,15 +95,11 @@
             border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
             transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             opacity: 0; animation: fadeInUp 0.8s forwards;
-            display: flex; flex-direction: column;
+            overflow: hidden;
         }
-        .tile:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+        .tile:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
 
-        /* GRID AREA ASSIGNMENTS */
+        /* AREA MAPPING */
         .hero { grid-area: hero; animation-delay: 0.1s; }      
         .cert-tile { grid-area: cert; animation-delay: 0.2s; } 
         .metrics-tile { grid-area: metrics; animation-delay: 0.3s; }
@@ -112,63 +107,65 @@
         .arsenal-tile { grid-area: arsenal; animation-delay: 0.5s; }
         .ops-tile { grid-area: ops; animation-delay: 0.6s; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        
-        /* --- TYPOGRAPHY --- */
-        h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 15px 0; line-height: 1; }
-        h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; }
-        .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 25px; }
-        .hl-pw { color: var(--green); font-weight: 700; }
-        .hl-ai { color: var(--purple); font-weight: 700; }
-        
-        .ai-btn {
-            background: var(--blue); color: #fff; border: none; 
-            padding: 14px 28px; border-radius: 14px; font-weight: 800; 
-            cursor: pointer; display: inline-flex; align-items: center; gap: 10px; width: fit-content;
-        }
+        /* --- 5. TEXT OVERLAP & BACKGROUND FIX --- */
+        h1 { font-size: 3rem; margin: 10px 0; letter-spacing: -1px; }
+        h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px; letter-spacing: 1px; }
 
-        /* --- CERTIFICATE LIST (FIXED OVERLAP) --- */
         .cert-list { display: flex; flex-direction: column; gap: 12px; }
         .cert { 
+            display: flex; flex-direction: column; /* FIXED: Vertical stack for */
             text-decoration: none; color: inherit; 
-            display: flex; flex-direction: column; /* Vertical stack prevents horizontal overlap */
             padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent;
-            background: rgba(255,255,255,0.02); transition: 0.3s;
+            transition: 0.3s ease; gap: 4px;
+            background: rgba(255,255,255,0.03); /* Restores missing color from */
         }
-        .cert:hover { transform: translateX(8px); background: rgba(255,255,255,0.05); }
-        .cert strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
-        .cert span { font-size: 0.75rem; color: var(--text-muted); }
+        .cert strong { display: block; font-size: 0.85rem; line-height: 1.2; }
+        .cert span { font-size: 0.7rem; color: var(--text-muted); }
 
-        .c-blue { border-left-color: var(--blue); }
-        .c-purple { border-left-color: var(--purple); }
-        .c-green { border-left-color: var(--green); }
-        .c-orange { border-left-color: var(--orange); }
+        /* GRADIENTS FROM YOUR CSS */
+        .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
+        .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
+        .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
+        .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
 
-        /* --- CLOUD & PILLS --- */
-        .cloud-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .cloud-item {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            padding: 15px; border-radius: 16px; text-align: center; font-weight: 800; font-size: 0.8rem;
-        }
-        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; border: 1px solid var(--border); text-align: center; }
-        .metric-num { display: block; font-size: 1.6rem; font-weight: 800; color: var(--green); }
+        /* METRICS & PILLS */
+        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; text-align: center; border: 1px solid var(--border); }
+        .metric-num { font-size: 1.4rem; font-weight: 800; color: var(--green); display: block; }
         .metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; }
 
-        .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .pill { padding: 8px 16px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
+        .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill { padding: 8px 16px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
 
-        /* --- MOBILE --- */
-        @media (max-width: 900px) {
+        .cloud-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .cloud-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; text-align: center; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border); }
+
+        /* --- 6. MOBILE RESPONSIVENESS --- */
+        @media (max-width: 1000px) {
+            .bento-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                grid-template-areas: 
+                    "hero hero"
+                    "cert cert"
+                    "metrics api"
+                    "arsenal arsenal"
+                    "ops ops";
+            }
+        }
+
+        @media (max-width: 650px) {
             .bento-grid { 
                 grid-template-columns: 1fr; 
                 grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops";
             }
-            .navbar { width: 90%; }
-            h1 { font-size: 2.5rem; }
+            .navbar { width: 92%; padding: 10px 15px; }
+            .header-socials { display: none; }
+            h1 { font-size: 2.2rem; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -183,7 +180,7 @@
                 <a href="#" class="social-link-hdr">LINKEDIN</a>
                 <a href="#" class="social-link-hdr">GITHUB</a>
             </div>
-            <a href="mailto:contact@example.com" class="contact-btn">Connect Me</a>
+            <a href="#" class="contact-btn">Connect Me</a>
         </div>
     </nav>
 
@@ -191,31 +188,26 @@
         <section class="tile hero">
             <h3>Software Test Engineer</h3>
             <h1>Vishal Shinde</h1>
-            <p class="bio">Architecting Quality for <span style="color:#fff;">Fintech, Healthcare, & E-commerce</span>. Expert in <span class="hl-pw">Selenium</span>, <span class="hl-ai">AI-Driven Testing</span>, & API Automation.</p>
-            <button class="ai-btn" id="aiMatcher">🧠 Match Profile with AI</button>
-            <div id="matchResult" style="display:none; margin-top: 20px; font-weight: 800; color: var(--success);">✅ 99.8% Recruiter Compatibility Match Found</div>
+            <p style="color: var(--text-muted); line-height: 1.6;">Architecting Quality for Fintech & E-commerce. Expert in Selenium, Playwright, and AI Automation.</p>
         </section>
 
         <section class="tile cert-tile">
             <h3>Elite Credentials</h3>
             <div class="cert-list">
                 <div class="cert c-blue"><strong>ISTQB® Advanced</strong><span>Technical Test Analyst</span></div>
-                <div class="cert c-purple"><strong>Salesforce AI Associate</strong><span>AI Automation Specialist</span></div>
+                <div class="cert c-purple"><strong>Salesforce AI</strong><span>Automation Specialist</span></div>
                 <div class="cert c-green"><strong>Playwright 101</strong><span>Automation Cert</span></div>
                 <div class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></div>
-                <div class="cert c-green"><strong>AccelQ Automation</strong><span>Certified Professional</span></div>
                 <div class="cert c-orange"><strong>AWS Partner</strong><span>Technical Specialist</span></div>
                 <div class="cert c-blue"><strong>ISTQB® CTFL</strong><span>Foundation Level</span></div>
             </div>
         </section>
 
         <section class="tile metrics-tile">
-            <h3>Quality Impact</h3>
+            <h3>Impact</h3>
             <div class="metrics-grid">
-                <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass Rate</span></div>
-                <div class="metric-card"><span class="metric-num">500+</span><span class="metric-label">API Tests</span></div>
-                <div class="metric-card"><span class="metric-num">70%</span><span class="metric-label">Time Saved</span></div>
-                <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Prod Leaks</span></div>
+                <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass</span></div>
+                <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Leaks</span></div>
             </div>
         </section>
 
@@ -231,49 +223,24 @@
             <h3>Technical Arsenal</h3>
             <div class="pill-grid">
                 <span class="pill">Playwright</span>
-                <span class="pill" style="color: var(--blue);">Selenium Java</span>
+                <span class="pill">Selenium</span>
                 <span class="pill">Appium</span>
-                <span class="pill">TestNG</span>
-                <span class="pill" style="color: var(--green);">JMeter</span>
-                <span class="pill">MySQL</span>
                 <span class="pill">Java</span>
                 <span class="pill">REST Assured</span>
+                <span class="pill">JMeter</span>
             </div>
         </section>
 
         <section class="tile ops-tile">
             <h3>Ops & Cloud</h3>
             <div class="cloud-flex">
-                <div class="cloud-item o-aws">AWS</div>
-                <div class="cloud-item o-az">Azure</div>
-                <div class="cloud-item o-gcp">GCP</div>
-                <div class="cloud-item o-sf">Salesforce</div>
+                <div class="cloud-item" style="color:#FF9900">AWS</div>
+                <div class="cloud-item" style="color:#0089D6">Azure</div>
+                <div class="cloud-item" style="color:#4285F4">GCP</div>
+                <div class="cloud-item" style="color:#00A1E0">SFDC</div>
             </div>
         </section>
     </main>
 
-    <footer style="text-align: center; padding: 40px; opacity: 0.6; font-size: 0.8rem;">
-        <div class="status-indicator" style="margin-bottom: 10px; color: var(--green);">
-            <span class="status-dot"></span> Available for QA Automation Roles
-        </div>
-        © 2024 Vishal Shinde. Optimized for Performance.
-    </footer>
-
-    <script>
-        document.getElementById('aiMatcher').addEventListener('click', function() {
-            this.innerHTML = "⏳ Analyzing Frameworks...";
-            setTimeout(() => {
-                this.style.display = "none";
-                document.getElementById('matchResult').style.display = "block";
-            }, 1000);
-        });
-
-        setInterval(() => {
-            const tiles = document.querySelectorAll('.tile');
-            const randomTile = tiles[Math.floor(Math.random() * tiles.length)];
-            randomTile.style.borderColor = "rgba(59, 130, 246, 0.4)";
-            setTimeout(() => randomTile.style.borderColor = "var(--border)", 1000);
-        }, 3000);
-    </script>
 </body>
 </html>
