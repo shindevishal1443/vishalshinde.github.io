@@ -10,12 +10,10 @@
     --red: #ef4444;
     --cyan: #06b6d4;
     --text-muted: #888;
-    --success: #00ff88;
 }
 
 /* --- 2. RESET & BASE --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body { 
     background: var(--bg); 
     color: #fff; 
@@ -29,31 +27,69 @@ body {
                 radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.12), transparent 40%);
     background-color: var(--bg);
     filter: blur(60px);
-    animation: breathe 10s infinite alternate ease-in-out;
 }
-@keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 
-/* --- 3. NAVBAR --- */
+/* --- 3. NAVBAR & SOCIALS --- */
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
     padding: 12px 28px; width: calc(100% - 40px); max-width: 1100px; 
     margin: 20px auto; border: 1px solid var(--border); border-radius: 100px;
     backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
     position: sticky; top: 20px; z-index: 1000;
-    opacity: 0; animation: fadeInUp 1s ease forwards;
 }
 
-.logo { font-weight: 800; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
-.logo span { color: var(--blue); }
+.nav-right { display: flex; align-items: center; gap: 15px; }
+
+.header-socials { 
+    display: flex; gap: 5px; 
+    border-right: 1px solid var(--border); 
+    padding-right: 15px; 
+}
+
+.social-link-hdr {
+    color: var(--text-muted); text-decoration: none; font-size: 0.65rem;
+    font-weight: 700; padding: 6px 12px; border-radius: 50px; transition: 0.3s;
+}
+.social-link-hdr:hover { color: #fff; background: rgba(255,255,255,0.1); }
 
 .contact-btn {
     background: #fff; color: #000; padding: 10px 24px; border-radius: 50px; 
-    font-weight: 800; text-decoration: none; font-size: 0.75rem; 
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 800; text-decoration: none; font-size: 0.75rem; transition: 0.3s;
 }
-.contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
 
-/* --- 4. BENTO GRID --- */
+/* --- 4. CERTS & API BACKGROUNDS (RESTORED) --- */
+.cert-list { display: flex; flex-direction: column; gap: 12px; }
+
+.cert { 
+    display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; 
+    border-left: 4px solid transparent; background: rgba(255,255,255,0.03);
+    transition: 0.3s ease; gap: 4px; text-decoration: none; color: inherit;
+}
+
+/* The Glassmorphism Backgrounds you wanted */
+.c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
+.c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
+.c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
+.c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
+
+.cert:hover { transform: translateX(5px); background: rgba(255,255,255,0.08); }
+
+/* --- 5. TECHNICAL ARSENAL --- */
+.pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill { 
+    padding: 8px 18px; background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid var(--border); border-radius: 50px; 
+    font-size: 0.75rem; font-weight: 700; transition: 0.3s;
+}
+
+.pill.pw { border-color: var(--green); color: var(--green); }
+.pill.sl { border-color: var(--blue); color: var(--blue); }
+.pill.jv { border-color: var(--orange); color: var(--orange); }
+.pill.ap { border-color: var(--purple); color: var(--purple); }
+.pill.api { border-color: var(--red); color: var(--red); }
+.pill.db { border-color: var(--cyan); color: var(--cyan); }
+
+/* --- 6. BENTO GRID LAYOUT --- */
 .bento-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
     max-width: 1100px; margin: 40px auto; padding: 0 20px;
@@ -68,16 +104,10 @@ body {
 .tile {
     background: var(--tile); border: 1px solid var(--border);
     border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
-    opacity: 0; animation: fadeInUp 0.8s forwards;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease;
-    position: relative;
+    transition: 0.4s ease;
 }
 
-.tile:hover { 
-    transform: translateY(-8px); 
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
+.tile:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); }
 
 .hero { grid-area: hero; }      
 .cert-tile { grid-area: cert; } 
@@ -86,48 +116,12 @@ body {
 .arsenal-tile { grid-area: arsenal; }
 .ops-tile { grid-area: ops; }
 
-/* --- 5. TECHNICAL ARSENAL COLOR CODING --- */
-.pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-
-.pill { 
-    padding: 8px 18px; 
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px solid var(--border); 
-    border-radius: 50px; 
-    font-size: 0.75rem; 
-    font-weight: 700; 
-    transition: all 0.3s ease;
-}
-
-/* Specific Skill Colors */
-.pill.pw { border-color: var(--green); color: var(--green); }
-.pill.sl { border-color: var(--blue); color: var(--blue); }
-.pill.jv { border-color: var(--orange); color: var(--orange); }
-.pill.ap { border-color: var(--purple); color: var(--purple); }
-.pill.api { border-color: var(--red); color: var(--red); }
-.pill.db { border-color: var(--cyan); color: var(--cyan); }
-
-.pill:hover { 
-    background: rgba(255, 255, 255, 0.1); 
-    transform: scale(1.05); 
-}
-
-/* --- 6. METRICS & COMPONENTS --- */
+/* Metrics */
 .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.metric-card { 
-    background: rgba(255,255,255,0.03); 
-    padding: 15px; border-radius: 18px; 
-    text-align: center; border: 1px solid var(--border); 
-}
-.metric-num { font-size: 1.4rem; font-weight: 800; color: var(--success); display: block; }
+.metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; text-align: center; border: 1px solid var(--border); }
+.metric-num { font-size: 1.4rem; font-weight: 800; color: var(--green); display: block; }
 .metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; }
 
+/* Ops */
 .cloud-flex { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.cloud-item { 
-    background: rgba(255,255,255,0.05); 
-    padding: 12px; border-radius: 12px; 
-    text-align: center; font-size: 0.75rem; 
-    font-weight: 700; border: 1px solid var(--border); 
-}
-
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.cloud-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; text-align: center; font-size: 0.75rem; border: 1px solid var(--border); }
