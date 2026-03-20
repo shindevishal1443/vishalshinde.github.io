@@ -89,11 +89,17 @@
         .arsenal-tile { grid-area: arsenal; animation-delay: 0.5s; }
         .ops-tile { grid-area: ops; animation-delay: 0.6s; }
 
-        /* --- 5. CONTENT STYLES --- */
-        h1 { font-size: 3rem; margin: 10px 0; letter-spacing: -1px; }
+        /* --- 5. CONTENT STYLES & HIGHLIGHTS --- */
+        h1 { font-size: 3.5rem; margin: 5px 0; letter-spacing: -2px; line-height: 1.1; }
         h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px; letter-spacing: 1px; }
 
-        /* --- 6. CERTS & API (GLASSMORPHISM GRADIENTS) --- */
+        .hl-fintech { color: var(--blue); font-weight: 800; }
+        .hl-healthcare { color: var(--cyan); font-weight: 800; }
+        .hl-ecommerce { color: var(--green); font-weight: 800; }
+        .hl-tools { color: #fff; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.3); }
+        .hl-ai { color: var(--purple); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- 6. CERTS & API --- */
         .cert-list { display: flex; flex-direction: column; gap: 12px; }
         .cert { 
             display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; 
@@ -134,6 +140,7 @@
             max-width: 1100px; margin: 60px auto 40px auto; padding: 20px;
             text-align: center; border-top: 1px solid var(--border);
             color: var(--text-muted); font-size: 0.75rem; letter-spacing: 0.5px;
+            line-height: 1.6;
         }
         .footer span { color: #fff; font-weight: 600; }
 
@@ -142,7 +149,7 @@
         }
         @media (max-width: 650px) {
             .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops"; }
-            h1 { font-size: 2.2rem; }
+            h1 { font-size: 2.5rem; }
         }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -163,19 +170,19 @@
 
     <main class="bento-grid">
         <section class="tile hero">
-    <h3>Software Test Engineer</h3>
-    <h1>Vishal Shinde</h1>
-    <p class="hero-desc" style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin-top: 15px;">
-        Architecting high-performance Quality Assurance for 
-        <span class="hl-fintech">Fintech</span>, 
-        <span class="hl-healthcare">Healthcare</span> & 
-        <span class="hl-ecommerce">E-commerce</span>. 
-        <br><br>
-        Expert in <span class="hl-tools">Selenium</span>, 
-        <span class="hl-tools">Playwright</span>, and cutting-edge 
-        <span class="hl-ai">AI Automation</span>.
-    </p>
-</section>
+            <h3>Software Test Engineer</h3>
+            <h1>Vishal Shinde</h1>
+            <p class="hero-desc" style="color: var(--text-muted);">
+                Architecting high-performance Quality Assurance for 
+                <span class="hl-fintech">Fintech</span>, 
+                <span class="hl-healthcare">Healthcare</span> & 
+                <span class="hl-ecommerce">E-commerce</span>. 
+                <br><br>
+                Expert in <span class="hl-tools">Selenium</span>, 
+                <span class="hl-tools">Playwright</span>, and cutting-edge 
+                <span class="hl-ai">AI Automation</span>.
+            </p>
+        </section>
 
         <section class="tile cert-tile">
             <h3>Elite Credentials</h3>
@@ -213,7 +220,7 @@
                 <span class="pill pw">Playwright</span>
                 <span class="pill sl">Selenium</span>
                 <span class="pill jv">Java</span>
-                <span class="pill api">REST </span>
+                <span class="pill api">REST API</span>
                 <span class="pill sl">JMeter</span>
                 <span class="pill db">MySQL</span>
                 <span class="pill pw">TestNG</span>
@@ -223,7 +230,6 @@
                 <span class="pill sl">Git</span>
                 <span class="pill db">Jenkins</span>
                 <span class="pill pw">JIRA</span>
-                
             </div>
         </section>
 
