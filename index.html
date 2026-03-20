@@ -65,8 +65,8 @@
             grid-template-areas: 
                 "hero hero cert"
                 "hero hero cert"
-                "matcher matcher cert"
                 "metrics api cert"
+                "arsenal arsenal cert"
                 "arsenal arsenal ops";
         }
 
@@ -74,75 +74,67 @@
             background: var(--tile); border: 1px solid var(--border);
             border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
             opacity: 0; animation: fadeInUp 0.8s forwards;
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
             position: relative;
             z-index: 1;
         }
+
+        /* FIXED: Hover Movement for ALL tiles */
         .tile:hover { 
-            transform: translateY(-8px); 
+            transform: translateY(-8px) scale(1.01); 
             border-color: rgba(59, 130, 246, 0.4);
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             z-index: 10;
         }
 
         .hero { grid-area: hero; animation-delay: 0.1s; }      
-        .matcher-tile { grid-area: matcher; animation-delay: 0.2s; border: 1px solid rgba(59, 130, 246, 0.2); }
-        .cert-tile { grid-area: cert; animation-delay: 0.3s; } 
-        .metrics-tile { grid-area: metrics; animation-delay: 0.4s; }
-        .api-tile { grid-area: api; animation-delay: 0.5s; }
-        .arsenal-tile { grid-area: arsenal; animation-delay: 0.6s; }
-        .ops-tile { grid-area: ops; animation-delay: 0.7s; }
+        .cert-tile { grid-area: cert; animation-delay: 0.2s; } 
+        .metrics-tile { grid-area: metrics; animation-delay: 0.3s; }
+        .api-tile { grid-area: api; animation-delay: 0.4s; }
+        .arsenal-tile { grid-area: arsenal; animation-delay: 0.5s; }
+        .ops-tile { grid-area: ops; animation-delay: 0.6s; }
 
-        /* --- 5. AI MATCHER STYLES --- */
-        #jdInput {
-            width: 100%; height: 65px; background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border); border-radius: 15px; padding: 12px;
-            color: #fff; font-size: 0.8rem; resize: none; outline: none; margin: 10px 0;
-        }
-        #matchBtn {
-            width: 100%; background: var(--blue); color: #fff; border: none; padding: 10px;
-            border-radius: 50px; font-weight: 800; cursor: pointer; transition: 0.3s; font-size: 0.75rem;
-        }
-        .match-output { margin-top: 15px; display: flex; align-items: center; gap: 12px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid var(--border); }
-        .progress-ring__circle { transition: stroke-dashoffset 0.8s ease; transform: rotate(-90deg); transform-origin: 50% 50%; stroke-dasharray: 113; stroke-dashoffset: 113; }
-
-        /* --- 6. COLORED ARSENAL PILLS --- */
-        .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-        .pill { 
-            padding: 8px 16px; background: rgba(255, 255, 255, 0.03); 
-            border: 1px solid var(--border); border-radius: 50px; 
-            font-size: 0.75rem; font-weight: 700; transition: 0.3s;
-        }
-        .pill:hover { transform: translateY(-3px); background: rgba(255,255,255,0.08); }
-        
-        /* Tech colors */
-        .pill.pw { border-color: #2db67c; color: #2db67c; }
-        .pill.sl { border-color: #3b82f6; color: #3b82f6; }
-        .pill.jv { border-color: #f59e0b; color: #f59e0b; }
-        .pill.ap { border-color: #a855f7; color: #a855f7; }
-        .pill.api { border-color: #ef4444; color: #ef4444; }
-        .pill.db { border-color: #06b6d4; color: #06b6d4; }
-
-        /* --- 7. GENERAL CONTENT --- */
+        /* --- 5. CONTENT --- */
         h1 { font-size: 3rem; margin: 10px 0; letter-spacing: -1px; }
         h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px; letter-spacing: 1px; }
+
         .cert-list { display: flex; flex-direction: column; gap: 12px; }
-        .cert { display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent; background: rgba(255,255,255,0.03); transition: 0.3s; gap: 4px; text-decoration: none; color: inherit; }
-        .c-blue { border-left-color: var(--blue); background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); }
-        .c-green { border-left-color: var(--green); background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); }
-        
+        .cert { 
+            display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; 
+            border-left: 4px solid transparent; background: rgba(255,255,255,0.03);
+            transition: 0.3s ease; gap: 4px; text-decoration: none; color: inherit;
+        }
+        .cert:hover { transform: translateX(5px); background: rgba(255,255,255,0.08); }
+        .cert strong { display: block; font-size: 0.85rem; }
+        .cert span { font-size: 0.7rem; color: var(--text-muted); }
+
+        .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
+        .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
+        .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
+        .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
+
         .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; text-align: center; border: 1px solid var(--border); }
         .metric-num { font-size: 1.4rem; font-weight: 800; color: var(--green); display: block; }
         .metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; }
 
+        .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill { padding: 8px 16px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+
+        .cloud-flex { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .cloud-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; text-align: center; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border); }
+
         @media (max-width: 1000px) {
-            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-areas: "hero hero" "matcher matcher" "cert cert" "metrics api" "arsenal ops"; }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-areas: "hero hero" "cert cert" "metrics api" "arsenal arsenal" "ops ops"; }
         }
         @media (max-width: 650px) {
-            .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "matcher" "cert" "metrics" "api" "arsenal" "ops"; }
+            .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops"; }
+            .header-socials { display: none; }
             h1 { font-size: 2.2rem; }
         }
+
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -166,26 +158,14 @@
             <p style="color: var(--text-muted); line-height: 1.6;">Architecting Quality for Fintech & E-commerce. Expert in Selenium, Playwright, and AI Automation.</p>
         </section>
 
-        <section class="tile matcher-tile">
-            <h3>AI Profile Matcher</h3>
-            <textarea id="jdInput" placeholder="Paste Job Description here..."></textarea>
-            <button onclick="matchProfile()" id="matchBtn">Check Compatibility</button>
-
-            <div id="matchResult" class="match-output" style="display: none;">
-                <div style="position: relative; width: 40px; height: 40px;">
-                    <svg width="40" height="40"><circle class="progress-ring__circle" stroke="var(--blue)" stroke-width="3" fill="transparent" r="18" cx="20" cy="20"/></svg>
-                    <div id="matchPct" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800;">0%</div>
-                </div>
-                <div id="matchMsg" style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.2;"></div>
-            </div>
-        </section>
-
         <section class="tile cert-tile">
             <h3>Elite Credentials</h3>
             <div class="cert-list">
                 <div class="cert c-blue"><strong>ISTQB® Advanced</strong><span>Technical Test Analyst</span></div>
+                <div class="cert c-purple"><strong>Salesforce AI</strong><span>Automation Specialist</span></div>
                 <div class="cert c-green"><strong>Playwright 101</strong><span>Automation Cert</span></div>
                 <div class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></div>
+                <div class="cert c-orange"><strong>AWS Partner</strong><span>Technical Specialist</span></div>
                 <div class="cert c-blue"><strong>ISTQB® CTFL</strong><span>Foundation Level</span></div>
             </div>
         </section>
@@ -195,6 +175,8 @@
             <div class="metrics-grid">
                 <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass Rate</span></div>
                 <div class="metric-card"><span class="metric-num">500+</span><span class="metric-label">API Tests</span></div>
+                <div class="metric-card"><span class="metric-num">70%</span><span class="metric-label">Efficiency</span></div>
+                <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Prod Leaks</span></div>
             </div>
         </section>
 
@@ -209,42 +191,22 @@
         <section class="tile arsenal-tile">
             <h3>Technical Arsenal</h3>
             <div class="pill-grid">
-                <span class="pill pw">Playwright</span>
-                <span class="pill sl">Selenium</span>
-                <span class="pill jv">Java</span>
-                <span class="pill ap">Appium</span>
-                <span class="pill api">REST Assured</span>
-                <span class="pill db">MySQL</span>
+                <span class="pill">Playwright</span><span class="pill">Selenium</span>
+                <span class="pill">Appium</span><span class="pill">Java</span>
+                <span class="pill">REST Assured</span><span class="pill">JMeter</span>
+                <span class="pill">MySQL</span><span class="pill">TestNG</span>
             </div>
         </section>
 
         <section class="tile ops-tile">
-            <h3>Cloud Ops</h3>
-            <div class="pill-grid">
-                <span class="pill">AWS</span>
-                <span class="pill">Azure</span>
+            <h3>Ops & Cloud</h3>
+            <div class="cloud-flex">
+                <div class="cloud-item" style="color:#FF9900">AWS</div>
+                <div class="cloud-item" style="color:#0089D6">Azure</div>
+                <div class="cloud-item" style="color:#4285F4">GCP</div>
+                <div class="cloud-item" style="color:#00A1E0">SFDC</div>
             </div>
         </section>
     </main>
-
-    <script>
-        function matchProfile() {
-            const jd = document.getElementById('jdInput').value.toLowerCase();
-            const output = document.getElementById('matchResult');
-            const circle = document.querySelector('.progress-ring__circle');
-            
-            if (!jd.trim()) return alert("Please paste a JD.");
-
-            const skills = ['playwright', 'selenium', 'java', 'api', 'appium', 'automation', 'sql', 'testing'];
-            let matches = skills.filter(s => jd.includes(s));
-            let score = Math.round((matches.length / skills.length) * 100);
-
-            output.style.display = "flex";
-            const circumference = 2 * Math.PI * 18;
-            circle.style.strokeDashoffset = circumference - (score / 100 * circumference);
-            document.getElementById('matchPct').innerText = `${score}%`;
-            document.getElementById('matchMsg').innerText = score > 50 ? "Excellent technical alignment for this role!" : "Solid foundation; let's discuss the specifics.";
-        }
-    </script>
 </body>
 </html>
