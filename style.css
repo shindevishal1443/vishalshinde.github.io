@@ -4,7 +4,146 @@
     --tile: rgba(18, 18, 22, 0.7);
     --border: rgba(255, 255, 255, 0.08);
     --blue: #3b82f6;
+    --green: #2db67c;/* --- 1. VARIABLES --- */
+:root {
+    --bg: #030303;
+    --tile: rgba(18, 18, 22, 0.7);
+    --border: rgba(255, 255, 255, 0.08);
+    --blue: #3b82f6;
     --green: #2db67c;
+    --purple: #a855f7;
+    --orange: #f59e0b;
+    --text-muted: #888;
+    --success: #00ff88;
+}
+
+/* --- 2. RESET & BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    background: var(--bg); 
+    color: #fff; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    overflow-x: hidden;
+}
+
+.bg-mesh {
+    position: fixed; inset: 0; z-index: -1;
+    background: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.12), transparent 40%);
+    background-color: var(--bg);
+    filter: blur(60px);
+    animation: breathe 10s infinite alternate ease-in-out;
+}
+@keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
+
+/* --- 3. ALIGNED PILL NAVBAR --- */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 28px; width: calc(100% - 40px); max-width: 1100px; 
+    margin: 20px auto; border: 1px solid var(--border); border-radius: 100px;
+    backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
+    position: sticky; top: 20px; z-index: 1000;
+    opacity: 0; animation: fadeInUp 1s ease forwards;
+}
+
+.logo { font-weight: 800; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
+.logo span { color: var(--blue); }
+
+.nav-right { display: flex; align-items: center; gap: 15px; }
+.contact-btn {
+    background: #fff; color: #000; padding: 10px 24px; border-radius: 50px; 
+    font-weight: 800; text-decoration: none; font-size: 0.75rem; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
+
+/* --- 4. BENTO GRID SYSTEM --- */
+.bento-grid {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-auto-rows: minmax(140px, auto);
+    gap: 20px;
+    max-width: 1100px; 
+    margin: 40px auto; 
+    padding: 0 20px;
+    /* DEFINING THE POSITIONS */
+    grid-template-areas: 
+        "hero hero cert"
+        "hero hero cert"
+        "matcher matcher cert"
+        "metrics api cert"
+        "arsenal arsenal ops";
+}
+
+.tile {
+    background: var(--tile); border: 1px solid var(--border);
+    border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0; animation: fadeInUp 0.8s forwards;
+    position: relative;
+}
+
+.tile:hover { 
+    transform: translateY(-8px); 
+    border-color: rgba(59, 130, 246, 0.4); /* Glow on hover */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    z-index: 2;
+}
+
+/* AREA ASSIGNMENTS */
+.hero { grid-area: hero; animation-delay: 0.1s; }      
+.matcher-tile { grid-area: matcher; animation-delay: 0.2s; border: 1px solid rgba(59, 130, 246, 0.2); }
+.cert-tile { grid-area: cert; animation-delay: 0.3s; } 
+.metrics-tile { grid-area: metrics; animation-delay: 0.4s; }
+.api-tile { grid-area: api; animation-delay: 0.5s; }
+.arsenal-tile { grid-area: arsenal; animation-delay: 0.6s; }
+.ops-tile { grid-area: ops; animation-delay: 0.7s; }
+
+/* --- 5. MATCHER SPECIFIC STYLES --- */
+.matcher-content { display: flex; flex-direction: column; gap: 12px; }
+#jdInput {
+    width: 100%; height: 70px; background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border); border-radius: 12px; padding: 12px;
+    color: #fff; font-size: 0.8rem; resize: none; outline: none;
+}
+#matchBtn {
+    background: var(--blue); color: #fff; border: none; padding: 10px;
+    border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
+}
+
+/* --- 6. RESPONSIVENESS --- */
+@media (max-width: 1000px) {
+    .bento-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        grid-template-areas: 
+            "hero hero"
+            "matcher matcher"
+            "cert cert"
+            "metrics api"
+            "arsenal ops";
+    }
+}
+
+@media (max-width: 650px) {
+    .bento-grid { 
+        grid-template-columns: 1fr; 
+        grid-template-areas: 
+            "hero"
+            "matcher"
+            "cert"
+            "metrics"
+            "api"
+            "arsenal"
+            "ops";
+    }
+    h1 { font-size: 2.2rem; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
     --purple: #a855f7;
     --orange: #f59e0b;
     --text-muted: #888;
