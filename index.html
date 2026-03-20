@@ -28,6 +28,7 @@
             color: #fff; 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             overflow-x: hidden;
+            line-height: 1.5;
         }
 
         /* --- PREMIUM BACKGROUND --- */
@@ -41,10 +42,10 @@
         }
         @keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 
-        /* --- SUPER DESIGN NAVBAR (FLOATING PILL) --- */
+        /* --- SUPER DESIGN NAVBAR --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 24px; max-width: 850px; margin: 20px auto;
+            padding: 12px 28px; width: 95%; max-width: 900px; margin: 20px auto;
             border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 100px;
             backdrop-filter: blur(20px) saturate(160%); background: rgba(10, 10, 10, 0.4);
             position: sticky; top: 20px; z-index: 1000;
@@ -54,8 +55,8 @@
         .logo { font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
         .logo span { color: var(--blue); text-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
 
-        .nav-right { display: flex; align-items: center; gap: 10px; }
-        .header-socials { display: flex; gap: 4px; border-right: 1px solid var(--border); padding-right: 12px; }
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+        .header-socials { display: flex; gap: 5px; border-right: 1px solid var(--border); padding-right: 15px; }
         
         .social-link-hdr {
             color: var(--text-muted); text-decoration: none; font-size: 0.65rem;
@@ -71,12 +72,19 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
         }
-        .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05) translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
+        .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
 
-        /* --- BENTO GRID --- */
+        /* --- BENTO GRID SYSTEM --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
         .bento-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            max-width: 1200px; margin: 40px auto; padding: 0 20px;
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
         }
 
         .tile {
@@ -85,15 +93,16 @@
             transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             opacity: 0; animation: fadeInUp 0.8s forwards;
         }
+        
         .tile:hover {
-            transform: translateY(-8px) scale(1.01);
+            transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.2);
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
+        /* Layout Rules */
         .hero { grid-column: span 2; animation-delay: 0.1s; }      
         .cert-tile { grid-row: span 2; animation-delay: 0.2s; } 
-        .metrics-tile { animation-delay: 0.3s; }
         .arsenal-tile { grid-column: span 2; animation-delay: 0.5s; }
 
         @keyframes fadeInUp {
@@ -103,12 +112,13 @@
         
         /* --- TYPOGRAPHY --- */
         h1 { 
-            font-size: 4rem; letter-spacing: -3px; margin: 10px 0; line-height: 0.95;
+            font-size: clamp(2.5rem, 6vw, 4rem); /* Fluid font size */
+            letter-spacing: -3px; margin: 10px 0; line-height: 0.95;
             background: linear-gradient(to bottom, #fff 60%, #888);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; }
-        .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 25px; }
+        h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; }
+        .bio { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 25px; max-width: 550px;}
         .hl-pw { color: var(--green); font-weight: 700; }
         .hl-ai { color: var(--purple); font-weight: 700; }
         
@@ -120,60 +130,61 @@
         }
         .ai-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(59, 130, 246, 0.3); }
 
-        /* --- CERTS (SUPER BACKGROUNDS) --- */
-        .cert-list { display: flex; flex-direction: column; gap: 12px; }
+        /* --- COMPONENTS --- */
+        .cert-list { display: flex; flex-direction: column; gap: 10px; }
         .cert { 
             text-decoration: none; color: inherit; display: block;
-            padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent;
-            transition: 0.3s ease;
+            padding: 12px 18px; border-radius: 16px; border-left: 4px solid transparent;
+            background: rgba(255,255,255,0.02); transition: 0.3s;
         }
-        .cert:hover { transform: translateX(8px); }
-        .cert strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
-        .cert span { font-size: 0.75rem; color: var(--text-muted); }
+        .cert:hover { transform: translateX(8px); background: rgba(255,255,255,0.06); }
+        .cert strong { display: block; font-size: 0.85rem; }
+        .cert span { font-size: 0.7rem; color: var(--text-muted); }
 
-        .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
-        .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
-        .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
-        .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
+        .c-blue { border-left-color: var(--blue); }
+        .c-purple { border-left-color: var(--purple); }
+        .c-green { border-left-color: var(--green); }
+        .c-orange { border-left-color: var(--orange); }
 
-        /* --- CLOUD (FIXED ALIGNMENT) --- */
-        .cloud-flex { display: flex; flex-wrap: wrap; gap: 10px; }
-        .cloud-item {
-            flex: 1 1 calc(50% - 10px); background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border); padding: 15px; border-radius: 16px;
-            text-align: center; font-weight: 800; font-size: 0.8rem; transition: 0.3s;
-        }
-        .cloud-item:hover { background: rgba(255,255,255,0.08); border-color: var(--text-muted); }
-        .o-aws { color: #FF9900; } .o-az { color: #0089D6; }
-        .o-gcp { color: #4285F4; } .o-sf { color: #00A1E0; }
-
-        /* --- OTHER ELEMENTS --- */
         .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; border: 1px solid var(--border); text-align: center; }
         .metric-num { display: block; font-size: 1.6rem; font-weight: 800; color: var(--green); }
         .metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .pill { padding: 10px 20px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; font-weight: 600; transition: 0.3s; }
+        .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill { padding: 8px 16px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; }
         .pill:hover { background: #fff; color: #000; }
+
+        .cloud-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .cloud-item {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            padding: 12px; border-radius: 14px; text-align: center;
+            font-weight: 800; font-size: 0.75rem; transition: 0.3s;
+        }
 
         /* --- FOOTER --- */
         footer {
             max-width: 1200px; margin: 60px auto 40px; padding: 30px 20px;
             border-top: 1px solid var(--border); text-align: center;
-            opacity: 0; animation: fadeInUp 1s ease forwards; animation-delay: 0.8s;
         }
         .status-indicator { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--green); font-weight: 700; margin-bottom: 10px; }
         .status-dot { width: 8px; height: 8px; background-color: var(--green); border-radius: 50%; box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(0.9); opacity: 0.6; } 50% { transform: scale(1.2); opacity: 1; } }
+        @keyframes pulse { 0%, 100% { opacity: 0.6; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } }
 
-        /* --- MOBILE --- */
-        @media (max-width: 900px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .hero, .arsenal-tile, .cert-tile { grid-column: span 1; }
-            .header-socials { display: none; }
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero, .arsenal-tile { grid-column: span 2; }
+            .cert-tile { grid-row: span 2; grid-column: span 1; }
+        }
+
+        @media (max-width: 768px) {
             .navbar { width: 92%; padding: 8px 16px; }
-            h1 { font-size: 2.8rem; letter-spacing: -1.5px; }
+            .header-socials { display: none; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .hero, .arsenal-tile, .cert-tile { grid-column: span 1; grid-row: span 1; }
+            h1 { font-size: 2.5rem; letter-spacing: -1.5px; }
+            .tile { padding: 24px; }
         }
     </style>
 </head>
@@ -183,7 +194,6 @@
 
     <nav class="navbar">
         <div class="logo">VISHAL <span>SHINDE</span></div>
-        
         <div class="nav-right">
             <div class="header-socials">
                 <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link-hdr">LINKEDIN</a>
@@ -193,72 +203,74 @@
         </div>
     </nav>
 
-    <main class="bento-grid">
-        <section class="tile hero">
-            <h3>Software Test Engineer</h3>
-            <h1>Vishal Shinde</h1>
-            <p class="bio">Architecting Quality for <span style="color:#fff;">Fintech, Healthcare, & E-commerce</span>. Expert in <span class="hl-pw">Selenium</span>, <span class="hl-ai">AI-Driven Testing</span>, & API Automation.</p>
-            <button class="ai-btn" id="aiMatcher">🧠 Match Profile with AI</button>
-            <div id="matchResult" style="display:none; margin-top: 20px; font-weight: 800; color: var(--success);">✅ 99.8% Recruiter Compatibility Match Found</div>
-        </section>
+    <div class="container">
+        <main class="bento-grid">
+            <section class="tile hero">
+                <h3>Software Test Engineer</h3>
+                <h1>Vishal Shinde</h1>
+                <p class="bio">Architecting Quality for <span style="color:#fff;">Fintech, Healthcare, & E-commerce</span>. Expert in <span class="hl-pw">Selenium</span>, <span class="hl-ai">AI-Driven Testing</span>, & API Automation.</p>
+                <button class="ai-btn" id="aiMatcher">🧠 Match Profile with AI</button>
+                <div id="matchResult" style="display:none; margin-top: 20px; font-weight: 800; color: var(--success);">✅ 99.8% Recruiter Compatibility Match Found</div>
+            </section>
 
-        <section class="tile cert-tile">
-            <h3>Elite Credentials</h3>
-            <div class="cert-list">
-                <a href="#" class="cert c-blue"><strong>ISTQB® Advanced</strong><span>Technical Test Analyst</span></a>
-                <a href="#" class="cert c-purple"><strong>Salesforce AI Associate</strong><span>AI Automation Specialist</span></a>
-                <a href="#" class="cert c-green"><strong>Playwright 101</strong><span>Automation Cert</span></a>
-                <a href="#" class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></a>
-                <a href="#" class="cert c-green"><strong>AccelQ Automation</strong><span>Certified Professional</span></a>
-                <a href="#" class="cert c-orange"><strong>AWS Partner Accreditation</strong><span>Technical Specialist</span></a>
-                <a href="#" class="cert c-blue"><strong>ISTQB® Certified Tester</strong><span>Foundation Level (CTFL)</span></a>
-            </div>
-        </section>
+            <section class="tile cert-tile">
+                <h3>Credentials</h3>
+                <div class="cert-list">
+                    <a href="#" class="cert c-blue"><strong>ISTQB® Advanced</strong><span>Technical Test Analyst</span></a>
+                    <a href="#" class="cert c-purple"><strong>Salesforce AI Associate</strong><span>AI Automation Specialist</span></a>
+                    <a href="#" class="cert c-green"><strong>Playwright 101</strong><span>Automation Cert</span></a>
+                    <a href="#" class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></a>
+                    <a href="#" class="cert c-green"><strong>AccelQ Automation</strong><span>Certified Professional</span></a>
+                    <a href="#" class="cert c-orange"><strong>AWS Partner</strong><span>Technical Specialist</span></a>
+                    <a href="#" class="cert c-blue"><strong>ISTQB® CTFL</strong><span>Foundation Level</span></a>
+                </div>
+            </section>
 
-        <section class="tile metrics-tile">
-            <h3>Quality Impact</h3>
-            <div class="metrics-grid">
-                <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass Rate</span></div>
-                <div class="metric-card"><span class="metric-num">500+</span><span class="metric-label">API Tests</span></div>
-                <div class="metric-card"><span class="metric-num">70%</span><span class="metric-label">Time Saved</span></div>
-                <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Prod Leaks</span></div>
-            </div>
-        </section>
+            <section class="tile metrics-tile">
+                <h3>Quality Impact</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass Rate</span></div>
+                    <div class="metric-card"><span class="metric-num">500+</span><span class="metric-label">API Tests</span></div>
+                    <div class="metric-card"><span class="metric-num">70%</span><span class="metric-label">Time Saved</span></div>
+                    <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Prod Leaks</span></div>
+                </div>
+            </section>
 
-        <section class="tile">
-            <h3>API Integration</h3>
-            <div class="cert-list">
-                <div class="cert c-green"><strong>Postman</strong><span>E2E Validation</span></div>
-                <div class="cert c-blue"><strong>Swagger</strong><span>API Contract Testing</span></div>
-            </div>
-        </section>
+            <section class="tile arsenal-tile">
+                <h3>Technical Arsenal</h3>
+                <div class="pill-grid">
+                    <span class="pill">Playwright</span>
+                    <span class="pill" style="border-color: var(--blue); color: var(--blue);">Selenium Java</span>
+                    <span class="pill">Appium</span>
+                    <span class="pill">TestNG</span>
+                    <span class="pill" style="border-color: var(--green); color: var(--green);">JMeter</span>
+                    <span class="pill">MySQL</span>
+                    <span class="pill">Java</span>
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">Maven</span>
+                    <span class="pill">REST Assured</span>
+                </div>
+            </section>
 
-        <section class="tile arsenal-tile">
-            <h3>Technical Arsenal</h3>
-            <div class="pill-grid">
-                <span class="pill">Playwright</span>
-                <span class="pill" style="border-color: var(--blue); color: var(--blue);">Selenium Java</span>
-                <span class="pill">Appium</span>
-                <span class="pill">TestNG</span>
-                <span class="pill" style="border-color: var(--green); color: var(--green);">JMeter</span>
-                <span class="pill">MySQL</span>
-                <span class="pill">Ubuntu</span>
-                <span class="pill">Java</span>
-                <span class="pill">JavaScript</span>
-                <span class="pill">Maven</span>
-            </div>
-        </section>
+            <section class="tile">
+                <h3>API Mastery</h3>
+                <div class="cert-list">
+                    <div class="cert c-green"><strong>Postman</strong><span>E2E Validation</span></div>
+                    <div class="cert c-blue"><strong>Swagger</strong><span>API Contract Testing</span></div>
+                </div>
+            </section>
 
-        <section class="tile">
-            <h3>Ops & Cloud</h3>
-            <div class="cloud-flex">
-                <div class="cloud-item o-aws">AWS</div>
-                <div class="cloud-item o-az">Azure</div>
-                <div class="cloud-item o-gcp">GCP</div>
-                <div class="cloud-item o-sf">Salesforce</div>
-            </div>
-        </section>
-    </main>
+            <section class="tile">
+                <h3>Ops & Cloud</h3>
+                <div class="cloud-flex">
+                    <div class="cloud-item o-aws">AWS</div>
+                    <div class="cloud-item o-az">Azure</div>
+                    <div class="cloud-item o-gcp">GCP</div>
+                    <div class="cloud-item o-sf">Salesforce</div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <footer>
         <div class="status-indicator">
@@ -279,6 +291,7 @@
             setTimeout(() => {
                 btn.style.display = "none";
                 result.style.display = "block";
+                result.style.animation = "fadeInUp 0.5s forwards";
             }, 1200);
         });
 
