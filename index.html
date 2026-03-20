@@ -41,34 +41,37 @@
         }
         @keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 
-        /* --- SUPER DESIGN NAVBAR --- */
+        /* --- SUPER DESIGN NAVBAR (FLOATING PILL) --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 30px; max-width: 900px; margin: 20px auto;
-            border: 1px solid var(--border); border-radius: 100px;
-            backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
+            padding: 10px 24px; max-width: 850px; margin: 20px auto;
+            border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 100px;
+            backdrop-filter: blur(20px) saturate(160%); background: rgba(10, 10, 10, 0.4);
             position: sticky; top: 20px; z-index: 1000;
             opacity: 0; animation: fadeInUp 1s ease forwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .logo { font-weight: 800; font-size: 1rem; letter-spacing: -0.5px; }
-        .logo span { color: var(--blue); }
+        .logo { font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+        .logo span { color: var(--blue); text-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
 
-        .nav-right { display: flex; align-items: center; gap: 15px; }
-        .header-socials { display: flex; gap: 5px; border-right: 1px solid var(--border); padding-right: 15px; }
+        .nav-right { display: flex; align-items: center; gap: 10px; }
+        .header-socials { display: flex; gap: 4px; border-right: 1px solid var(--border); padding-right: 12px; }
         
         .social-link-hdr {
-            color: var(--text-muted); text-decoration: none; font-size: 0.7rem;
-            font-weight: 700; padding: 6px 12px; border-radius: 50px;
-            transition: 0.3s;
+            color: var(--text-muted); text-decoration: none; font-size: 0.65rem;
+            font-weight: 800; padding: 8px 14px; border-radius: 50px;
+            transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .social-link-hdr:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .social-link-hdr:hover { color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-1px); }
 
         .contact-btn {
-            background: #fff; color: #000; padding: 8px 20px; 
+            background: #fff; color: #000; padding: 10px 22px; 
             border-radius: 50px; font-weight: 800; text-decoration: none;
-            font-size: 0.8rem; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.75rem; letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
         }
-        .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
+        .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05) translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
 
         /* --- BENTO GRID --- */
         .bento-grid {
@@ -99,7 +102,11 @@
         }
         
         /* --- TYPOGRAPHY --- */
-        h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 15px 0; line-height: 1; }
+        h1 { 
+            font-size: 4rem; letter-spacing: -3px; margin: 10px 0; line-height: 0.95;
+            background: linear-gradient(to bottom, #fff 60%, #888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
         h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; }
         .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 25px; }
         .hl-pw { color: var(--green); font-weight: 700; }
@@ -165,8 +172,8 @@
             .bento-grid { grid-template-columns: 1fr; }
             .hero, .arsenal-tile, .cert-tile { grid-column: span 1; }
             .header-socials { display: none; }
-            .navbar { width: 95%; }
-            h1 { font-size: 2.5rem; }
+            .navbar { width: 92%; padding: 8px 16px; }
+            h1 { font-size: 2.8rem; letter-spacing: -1.5px; }
         }
     </style>
 </head>
@@ -182,7 +189,7 @@
                 <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link-hdr">LINKEDIN</a>
                 <a href="https://github.com/yourusername" target="_blank" class="social-link-hdr">GITHUB</a>
             </div>
-            <a href="mailto:your.email@example.com" class="contact-btn">Connect Me</a>
+            <a href="mailto:your.email@example.com" class="contact-btn">CONNECT ME</a>
         </div>
     </nav>
 
