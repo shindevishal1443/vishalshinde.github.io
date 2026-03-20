@@ -27,6 +27,7 @@
             color: #fff; 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             overflow-x: hidden;
+            line-height: 1.5;
         }
 
         /* --- 2. PREMIUM BACKGROUND --- */
@@ -45,13 +46,14 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 28px; 
             width: 95%; 
-            max-width: 1110px; /* Matched to grid width */
+            max-width: 1110px; /* Syncs with Bento Grid edges */
             margin: 20px auto;
             border: 1px solid var(--border); border-radius: 100px;
-            backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(20px) saturate(180%); 
+            background: rgba(10, 10, 10, 0.4);
             position: sticky; top: 20px; z-index: 1000;
             opacity: 0; animation: fadeInUp 1s ease forwards;
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .logo { font-weight: 800; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
         .logo span { color: var(--blue); }
@@ -70,30 +72,29 @@
             background: #fff; color: #000; padding: 10px 24px; 
             border-radius: 50px; font-weight: 800; text-decoration: none;
             font-size: 0.75rem; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: buttonPulse 3s infinite;
-        }
-        @keyframes buttonPulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
         .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
 
         /* --- 4. BENTO GRID --- */
         .bento-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            max-width: 1200px; margin: 40px auto; padding: 0 20px;
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-auto-rows: minmax(100px, auto);
+            gap: 20px;
+            max-width: 1150px; 
+            margin: 40px auto; 
+            padding: 0 20px;
         }
 
         .tile {
-            position: relative; overflow: hidden; /* For scan animation */
+            position: relative; overflow: hidden;
             background: var(--tile); border: 1px solid var(--border);
             border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
             transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             opacity: 0; animation: fadeInUp 0.8s forwards;
         }
         
-        /* --- TESTING SCAN ANIMATION --- */
+        /* SCAN ANIMATION */
         .tile::after {
             content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.08), transparent);
@@ -108,24 +109,58 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .hero { grid-column: span 2; animation-delay: 0.1s; }      
-        .cert-tile { grid-row: span 2; animation-delay: 0.2s; } 
-        .metrics-tile { animation-delay: 0.3s; }
-        .arsenal-tile { grid-column: span 2; animation-delay: 0.5s; }
+        /* GRID MAPPING */
+        .hero { grid-column: 1 / 3; grid-row: span 2; animation-delay: 0.1s; }      
+        .cert-tile { grid-column: 3 / 4; grid-row: span 4; animation-delay: 0.2s; } 
+        .metrics-tile { grid-column: 1 / 2; animation-delay: 0.3s; }
+        .api-tile { grid-column: 2 / 3; animation-delay: 0.4s; } 
+        .arsenal-tile { grid-column: 1 / 3; animation-delay: 0.5s; }
+        .ops-tile { grid-column: 3 / 4; align-self: end; animation-delay: 0.6s; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px) scale(0.95); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
-        /* --- TYPOGRAPHY --- */
-        h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 15px 0; line-height: 1; }
+        /* --- 5. COMPONENT FIXES (NO OVERLAP) --- */
+        .cert-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .cert { 
+            display: flex;
+            flex-direction: column; /* FORCES VERTICAL STACKING */
+            align-items: flex-start;
+            padding: 14px 18px;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 16px;
+            border-left: 4px solid transparent;
+            transition: 0.3s ease;
+            gap: 4px; /* Space between title and description */
+        }
+        .cert:hover { transform: translateX(8px); }
+
+        .cert strong { display: block; font-size: 0.9rem; line-height: 1.2; }
+        .cert span { display: block; font-size: 0.75rem; color: var(--text-muted); line-height: 1.2; }
+
+        .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
+        .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
+        .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
+        .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
+
+        /* --- TYPOGRAPHY & BUTTONS --- */
+        h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); letter-spacing: -2px; margin: 15px 0; line-height: 1; }
         h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; }
         .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 25px; }
         .hl-pw { color: var(--green); font-weight: 700; }
         .hl-ai { color: var(--purple); font-weight: 700; }
         
-        /* STATUS PING */
+        .ai-btn {
+            background: var(--blue); color: #fff; border: none; 
+            padding: 14px 28px; border-radius: 14px; font-weight: 800; 
+            cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+            transition: 0.3s; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+
         .status-ping {
             display: inline-block; width: 8px; height: 8px; background-color: var(--green);
             border-radius: 50%; margin-right: 8px; position: relative;
@@ -136,34 +171,12 @@
         }
         @keyframes ping { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
 
-        .ai-btn {
-            background: var(--blue); color: #fff; border: none; 
-            padding: 14px 28px; border-radius: 14px; font-weight: 800; 
-            cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
-            transition: 0.3s; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
-        }
-
-        /* --- COMPONENTS --- */
-        .cert-list { display: flex; flex-direction: column; gap: 12px; }
-        .cert { 
-            text-decoration: none; color: inherit; display: block;
-            padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent;
-            transition: 0.3s ease;
-        }
-        .cert:hover { transform: translateX(8px); }
-        .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
-        .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
-        .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
-        .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
-
-        .cloud-flex { display: flex; flex-wrap: wrap; gap: 10px; }
+        .cloud-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .cloud-item {
-            flex: 1 1 calc(50% - 10px); background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border); padding: 15px; border-radius: 16px;
-            text-align: center; font-weight: 800; font-size: 0.8rem; transition: 0.3s;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border); 
+            padding: 15px; border-radius: 16px; text-align: center; 
+            font-weight: 800; font-size: 0.8rem; transition: 0.3s;
         }
-        .o-aws { color: #FF9900; } .o-az { color: #0089D6; }
-        .o-gcp { color: #4285F4; } .o-sf { color: #00A1E0; }
 
         .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; border: 1px solid var(--border); text-align: center; }
@@ -171,10 +184,9 @@
         .metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .pill { padding: 10px 20px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; font-weight: 600; transition: 0.3s; }
+        .pill { padding: 8px 16px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; }
         .pill:hover { background: #fff; color: #000; border-color: #fff; }
 
-        /* --- FOOTER --- */
         footer {
             max-width: 1200px; margin: 60px auto 40px; padding: 30px 20px;
             border-top: 1px solid var(--border); text-align: center;
@@ -182,10 +194,9 @@
 
         @media (max-width: 900px) {
             .bento-grid { grid-template-columns: 1fr; }
-            .hero, .arsenal-tile, .cert-tile { grid-column: span 1; }
+            .hero, .cert-tile, .arsenal-tile, .ops-tile { grid-column: auto; grid-row: auto; }
             .header-socials { display: none; }
-            .navbar { width: 95%; padding: 10px 18px; }
-            h1 { font-size: 2.5rem; }
+            .navbar { width: 94%; }
         }
     </style>
 </head>
@@ -242,8 +253,8 @@
             </div>
         </section>
 
-        <section class="tile">
-            <h3>API Integration</h3>
+        <section class="tile api-tile">
+            <h3>API Mastery</h3>
             <div class="cert-list">
                 <div class="cert c-green"><strong>Postman</strong><span>E2E Validation</span></div>
                 <div class="cert c-blue"><strong>Swagger</strong><span>API Contract Testing</span></div>
@@ -267,7 +278,7 @@
             </div>
         </section>
 
-        <section class="tile">
+        <section class="tile ops-tile">
             <h3>Ops & Cloud</h3>
             <div class="cloud-flex">
                 <div class="cloud-item o-aws">AWS</div>
@@ -299,17 +310,17 @@
             }, 1200);
         });
 
-        // Magnetic Navbar logic (Optional refinement)
+        // Scroll logic for Navbar
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 nav.style.width = "90%";
-                nav.style.padding = "8px 24px";
-                nav.style.background = "rgba(5, 5, 5, 0.8)";
+                nav.style.padding = "10px 24px";
+                nav.style.background = "rgba(5, 5, 5, 0.85)";
             } else {
                 nav.style.width = "95%";
                 nav.style.padding = "12px 28px";
-                nav.style.background = "rgba(255,255,255,0.03)";
+                nav.style.background = "rgba(10, 10, 10, 0.4)";
             }
         });
     </script>
