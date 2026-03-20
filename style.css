@@ -1,8 +1,8 @@
 /* --- 1. VARIABLES --- */
 :root {
     --bg: #030303;
-    --tile: rgba(18, 18, 22, 0.7);
-    --border: rgba(255, 255, 255, 0.08);
+    --tile: rgba(18, 18, 22, 0.75);
+    --border: rgba(255, 255, 255, 0.1);
     --blue: #3b82f6;
     --green: #2db67c;
     --purple: #a855f7;
@@ -21,15 +21,38 @@ body {
     overflow-x: hidden;
 }
 
+/* --- 3. ANIMATED BACKGROUND --- */
 .bg-mesh {
-    position: fixed; inset: 0; z-index: -1;
-    background: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 40%),
-                radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.12), transparent 40%);
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1), transparent 50%);
     background-color: var(--bg);
-    filter: blur(60px);
+    filter: blur(80px);
+    animation: meshMove 20s infinite alternate ease-in-out;
 }
 
-/* --- 3. NAVBAR & SOCIALS --- */
+@keyframes meshMove {
+    0% { background-position: 0% 0%; transform: scale(1); }
+    50% { background-position: 50% 50%; transform: scale(1.1); }
+    100% { background-position: 100% 100%; transform: scale(1); }
+}
+
+/* Subtle Grain Texture */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("https://grains.vectorone.workers.dev/grain.png");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- 4. NAVBAR --- */
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
     padding: 12px 28px; width: calc(100% - 40px); max-width: 1100px; 
@@ -41,12 +64,7 @@ body {
 .logo span { color: var(--blue); }
 
 .nav-right { display: flex; align-items: center; gap: 15px; }
-.header-socials { 
-    display: flex; gap: 5px; 
-    border-right: 1px solid var(--border); 
-    padding-right: 15px; 
-}
-
+.header-socials { display: flex; gap: 5px; border-right: 1px solid var(--border); padding-right: 15px; }
 .social-link-hdr {
     color: var(--text-muted); text-decoration: none; font-size: 0.65rem;
     font-weight: 700; padding: 6px 12px; border-radius: 50px; transition: 0.3s;
@@ -55,11 +73,11 @@ body {
 
 .contact-btn {
     background: #fff; color: #000; padding: 10px 24px; border-radius: 50px; 
-    font-weight: 800; text-decoration: none; font-size: 0.75rem; transition: 0.3s;
+    font-weight: 800; text-decoration: none; font-size: 0.75rem; transition: 0.3s ease;
 }
-.contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
+.contact-btn:hover { background: var(--blue); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2); }
 
-/* --- 4. BENTO GRID LAYOUT --- */
+/* --- 5. BENTO GRID --- */
 .bento-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
     max-width: 1100px; margin: 40px auto; padding: 0 20px;
@@ -73,9 +91,9 @@ body {
 .tile {
     background: var(--tile); border: 1px solid var(--border);
     border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
-    transition: 0.4s ease;
+    transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.tile:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); }
+.tile:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
 
 .hero { grid-area: hero; }      
 .cert-tile { grid-area: cert; } 
@@ -84,17 +102,17 @@ body {
 .arsenal-tile { grid-area: arsenal; }
 .ops-tile { grid-area: ops; }
 
-/* --- 5. TEXT STYLING & HIGHLIGHTS --- */
-h1 { font-size: 3.5rem; margin: 10px 0; letter-spacing: -2px; }
-h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px; letter-spacing: 1px; }
-.hero-desc { line-height: 1.6; font-size: 1.1rem; }
+/* --- 6. TEXT STYLING --- */
+h1 { font-size: 3.5rem; margin: 10px 0; letter-spacing: -2px; line-height: 1.1; }
+h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; letter-spacing: 2px; }
 
-.hl-blue { color: var(--blue); font-weight: 800; }
-.hl-cyan { color: var(--cyan); font-weight: 800; }
-.hl-green { color: var(--green); font-weight: 800; }
-.hl-purple { color: var(--purple); font-weight: 800; border-bottom: 2px solid var(--purple); }
+.hl-fintech { color: var(--blue); font-weight: 800; }
+.hl-healthcare { color: var(--cyan); font-weight: 800; }
+.hl-ecommerce { color: var(--green); font-weight: 800; }
+.hl-tools { color: #fff; border-bottom: 1px solid var(--border); }
+.hl-ai { color: var(--purple); font-weight: 800; text-transform: uppercase; }
 
-/* --- 6. CERTS & API (GLASSMORPHISM) --- */
+/* --- 7. CERTS & PILLS --- */
 .cert-list { display: flex; flex-direction: column; gap: 12px; }
 .cert { 
     display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; 
@@ -102,41 +120,48 @@ h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); ma
     transition: 0.3s ease; gap: 4px; text-decoration: none; color: inherit;
 }
 .cert:hover { transform: translateX(5px); background: rgba(255,255,255,0.08); }
+.cert strong { font-size: 0.85rem; font-weight: 700; }
+.cert span { font-size: 0.7rem; color: var(--text-muted); }
 
 .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
 .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
 .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
 .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
 
-/* --- 7. PILLS, METRICS & OPS --- */
 .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 .pill { 
     padding: 8px 18px; background: rgba(255, 255, 255, 0.03); 
     border: 1px solid var(--border); border-radius: 50px; 
     font-size: 0.75rem; font-weight: 700; transition: 0.3s;
 }
+.pill:hover { background: #fff; color: #000; transform: translateY(-3px); }
 .pill.pw { border-color: var(--green); color: var(--green); }
 .pill.sl { border-color: var(--blue); color: var(--blue); }
 .pill.jv { border-color: var(--orange); color: var(--orange); }
-.pill.ap { border-color: var(--purple); color: var(--purple); }
 .pill.api { border-color: var(--red); color: var(--red); }
 .pill.db { border-color: var(--cyan); color: var(--cyan); }
 
+/* --- 8. METRICS --- */
 .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; text-align: center; border: 1px solid var(--border); }
-.metric-num { font-size: 1.4rem; font-weight: 800; color: var(--green); display: block; }
-.metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; }
+.metric-num { font-size: 1.5rem; font-weight: 800; color: var(--green); display: block; }
+.metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
 
-.cloud-flex { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.cloud-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; text-align: center; font-size: 0.75rem; border: 1px solid var(--border); font-weight: 700; }
-
-/* --- 8. FOOTER --- */
+/* --- 9. FOOTER --- */
 .footer {
-    max-width: 1100px; margin: 60px auto 40px auto; padding: 20px;
+    max-width: 1100px; margin: 80px auto 40px; padding-top: 40px;
     text-align: center; border-top: 1px solid var(--border);
-    color: var(--text-muted); font-size: 0.75rem;
+    color: var(--text-muted); font-size: 0.75rem; line-height: 1.8;
 }
+.footer span { color: #fff; font-weight: 700; }
 
-/* --- 9. RESPONSIVE --- */
-@media (max-width: 1000px) { .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-areas: "hero hero" "cert cert" "metrics api" "arsenal arsenal" "ops ops"; } }
-@media (max-width: 650px) { .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops"; } h1 { font-size: 2.5rem; } }
+/* --- 10. RESPONSIVE --- */
+@media (max-width: 1000px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-areas: "hero hero" "cert cert" "metrics api" "arsenal arsenal" "ops ops"; }
+    h1 { font-size: 3rem; }
+}
+@media (max-width: 650px) {
+    .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops"; }
+    h1 { font-size: 2.2rem; }
+    .navbar { padding: 10px 15px; }
+}
