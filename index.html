@@ -45,7 +45,7 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 28px; 
             width: 95%; 
-            max-width: 1100px; /* SYNCED WITH GRID */
+            max-width: 1100px; 
             margin: 20px auto;
             border: 1px solid var(--border); border-radius: 100px;
             backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
@@ -73,7 +73,7 @@
         }
         .contact-btn:hover { background: var(--blue); color: #fff; }
 
-        /* --- 4. BENTO GRID SYSTEM (INTEGRATED) --- */
+        /* --- 4. BENTO GRID SYSTEM --- */
         .bento-grid {
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -81,7 +81,6 @@
             max-width: 1100px; 
             margin: 40px auto; 
             padding: 0 20px;
-            /* Using named areas to fix the gaps seen in */
             grid-template-areas: 
                 "hero hero cert"
                 "hero hero cert"
@@ -107,29 +106,28 @@
         .arsenal-tile { grid-area: arsenal; animation-delay: 0.5s; }
         .ops-tile { grid-area: ops; animation-delay: 0.6s; }
 
-        /* --- 5. TEXT OVERLAP & BACKGROUND FIX --- */
+        /* --- 5. CONTENT STYLES --- */
         h1 { font-size: 3rem; margin: 10px 0; letter-spacing: -1px; }
         h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px; letter-spacing: 1px; }
 
         .cert-list { display: flex; flex-direction: column; gap: 12px; }
         .cert { 
-            display: flex; flex-direction: column; /* FIXED: Vertical stack for */
+            display: flex; flex-direction: column; 
             text-decoration: none; color: inherit; 
             padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent;
             transition: 0.3s ease; gap: 4px;
-            background: rgba(255,255,255,0.03); /* Restores missing color from */
+            background: rgba(255,255,255,0.03);
         }
         .cert strong { display: block; font-size: 0.85rem; line-height: 1.2; }
         .cert span { font-size: 0.7rem; color: var(--text-muted); }
 
-        /* GRADIENTS FROM YOUR CSS */
         .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
         .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
         .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
         .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
 
-        /* METRICS & PILLS */
-        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        /* FIXED: Quality Impact 4-Column Layout */
+        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; text-align: center; border: 1px solid var(--border); }
         .metric-num { font-size: 1.4rem; font-weight: 800; color: var(--green); display: block; }
         .metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; }
@@ -137,7 +135,7 @@
         .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
         .pill { padding: 8px 16px; background: #000; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
 
-        .cloud-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .cloud-flex { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .cloud-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; text-align: center; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border); }
 
         /* --- 6. MOBILE RESPONSIVENESS --- */
@@ -161,6 +159,7 @@
             .navbar { width: 92%; padding: 10px 15px; }
             .header-socials { display: none; }
             h1 { font-size: 2.2rem; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @keyframes fadeInUp {
@@ -204,10 +203,12 @@
         </section>
 
         <section class="tile metrics-tile">
-            <h3>Impact</h3>
+            <h3>Quality Impact</h3>
             <div class="metrics-grid">
-                <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass</span></div>
-                <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Leaks</span></div>
+                <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass Rate</span></div>
+                <div class="metric-card"><span class="metric-num">500+</span><span class="metric-label">API Tests</span></div>
+                <div class="metric-card"><span class="metric-num">70%</span><span class="metric-label">Efficiency</span></div>
+                <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Prod Leaks</span></div>
             </div>
         </section>
 
@@ -228,6 +229,8 @@
                 <span class="pill">Java</span>
                 <span class="pill">REST Assured</span>
                 <span class="pill">JMeter</span>
+                <span class="pill">MySQL</span>
+                <span class="pill">TestNG</span>
             </div>
         </section>
 
