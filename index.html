@@ -106,4 +106,127 @@
             border-left: 4px solid transparent; background: rgba(255,255,255,0.03);
             transition: 0.3s ease; gap: 4px; text-decoration: none; color: inherit;
         }
-        .cert:hover { transform: translateX(5px); background: rgba(2
+        .cert:hover { transform: translateX(5px); background: rgba(255,255,255,0.08); }
+        .cert strong { display: block; font-size: 0.85rem; }
+        .cert span { font-size: 0.7rem; color: var(--text-muted); }
+
+        /* Restored Gradient Backs */
+        .c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
+        .c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
+        .c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
+        .c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .metric-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; text-align: center; border: 1px solid var(--border); }
+        .metric-num { font-size: 1.4rem; font-weight: 800; color: var(--green); display: block; }
+        .metric-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; }
+
+        /* --- 7. ARSENAL PILL COLORS --- */
+        .pill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .pill { 
+            padding: 8px 18px; 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid var(--border); 
+            border-radius: 50px; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            transition: all 0.3s ease;
+        }
+        .pill.pw { border-color: var(--green); color: var(--green); }
+        .pill.sl { border-color: var(--blue); color: var(--blue); }
+        .pill.jv { border-color: var(--orange); color: var(--orange); }
+        .pill.ap { border-color: var(--purple); color: var(--purple); }
+        .pill.api { border-color: var(--red); color: var(--red); }
+        .pill.db { border-color: var(--cyan); color: var(--cyan); }
+        .pill:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
+
+        .cloud-flex { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .cloud-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; text-align: center; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border); }
+
+        @media (max-width: 1000px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-areas: "hero hero" "cert cert" "metrics api" "arsenal arsenal" "ops ops"; }
+        }
+        @media (max-width: 650px) {
+            .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops"; }
+            h1 { font-size: 2.2rem; }
+        }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <nav class="navbar">
+        <div class="logo">VISHAL <span>SHINDE</span></div>
+        <div class="nav-right">
+            <div class="header-socials">
+                <a href="#" class="social-link-hdr">LINKEDIN</a>
+                <a href="#" class="social-link-hdr">GITHUB</a>
+            </div>
+            <a href="#" class="contact-btn">Connect Me</a>
+        </div>
+    </nav>
+
+    <main class="bento-grid">
+        <section class="tile hero">
+            <h3>Software Test Engineer</h3>
+            <h1>Vishal Shinde</h1>
+            <p style="color: var(--text-muted); line-height: 1.6;">Architecting Quality for Fintech & E-commerce. Expert in Selenium, Playwright, and AI Automation.</p>
+        </section>
+
+        <section class="tile cert-tile">
+            <h3>Elite Credentials</h3>
+            <div class="cert-list">
+                <div class="cert c-blue"><strong>ISTQB® Advanced</strong><span>Technical Test Analyst</span></div>
+                <div class="cert c-purple"><strong>Salesforce AI</strong><span>Automation Specialist</span></div>
+                <div class="cert c-green"><strong>Playwright 101</strong><span>Automation Cert</span></div>
+                <div class="cert c-blue"><strong>Selenium 101</strong><span>Automation Cert</span></div>
+                <div class="cert c-orange"><strong>AWS Partner</strong><span>Technical Specialist</span></div>
+                <div class="cert c-blue"><strong>ISTQB® CTFL</strong><span>Foundation Level</span></div>
+            </div>
+        </section>
+
+        <section class="tile metrics-tile">
+            <h3>Quality Impact</h3>
+            <div class="metrics-grid">
+                <div class="metric-card"><span class="metric-num">99%</span><span class="metric-label">Pass Rate</span></div>
+                <div class="metric-card"><span class="metric-num">500+</span><span class="metric-label">API Tests</span></div>
+                <div class="metric-card"><span class="metric-num">70%</span><span class="metric-label">Efficiency</span></div>
+                <div class="metric-card"><span class="metric-num">0</span><span class="metric-label">Prod Leaks</span></div>
+            </div>
+        </section>
+
+        <section class="tile api-tile">
+            <h3>API Mastery</h3>
+            <div class="cert-list">
+                <div class="cert c-green"><strong>Postman</strong><span>E2E Validation</span></div>
+                <div class="cert c-blue"><strong>Swagger</strong><span>Contract Testing</span></div>
+            </div>
+        </section>
+
+        <section class="tile arsenal-tile">
+            <h3>Technical Arsenal</h3>
+            <div class="pill-grid">
+                <span class="pill pw">Playwright</span>
+                <span class="pill sl">Selenium</span>
+                <span class="pill ap">Appium</span>
+                <span class="pill jv">Java</span>
+                <span class="pill api">REST Assured</span>
+                <span class="pill sl">JMeter</span>
+                <span class="pill db">MySQL</span>
+                <span class="pill pw">TestNG</span>
+            </div>
+        </section>
+
+        <section class="tile ops-tile">
+            <h3>Ops & Cloud</h3>
+            <div class="cloud-flex">
+                <div class="cloud-item" style="color:#FF9900">AWS</div>
+                <div class="cloud-item" style="color:#0089D6">Azure</div>
+                <div class="cloud-item" style="color:#4285F4">GCP</div>
+                <div class="cloud-item" style="color:#00A1E0">SFDC</div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
