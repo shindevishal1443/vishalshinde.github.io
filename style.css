@@ -22,14 +22,15 @@ body {
     font-family: 'Plus Jakarta Sans', sans-serif; 
     overflow-x: hidden;
     line-height: 1.5;
+    /* Prevents the grey "tap box" on mobile */
     -webkit-tap-highlight-color: transparent; 
 }
 
-/* --- 3. ANIMATED BACKGROUNDS (Sunk to the bottom) --- */
+/* --- 3. BACKGROUND LAYERS (Sunk behind content) --- */
 .bg-mesh {
     position: fixed;
     inset: -50px;
-    z-index: -3; /* Lowest layer */
+    z-index: -3; 
     background: 
         radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15), transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15), transparent 40%),
@@ -43,7 +44,7 @@ body {
 .spotlight {
     position: fixed;
     inset: 0;
-    z-index: -2; /* Above mesh, below grain */
+    z-index: -2; 
     background: radial-gradient(
         600px circle at var(--mouse-x) var(--mouse-y), 
         rgba(59, 130, 246, 0.08), 
@@ -60,7 +61,7 @@ body::before {
     background-image: url("https://grains.vectorone.workers.dev/grain.png");
     opacity: 0.04;
     pointer-events: none;
-    z-index: -1; /* Moved to negative so it cannot block buttons */
+    z-index: -1; /* Behind content so it doesn't block taps */
 }
 
 @keyframes nebulaMove {
@@ -69,14 +70,14 @@ body::before {
     100% { transform: scale(1) translate(-1%, 1%); }
 }
 
-/* --- 4. NAVBAR (Raised to the top) --- */
+/* --- 4. NAVBAR --- */
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
     padding: 12px 28px; width: calc(100% - 40px); max-width: 1100px; 
     margin: 20px auto; border: 1px solid var(--border); border-radius: 100px;
     backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
     position: sticky; top: 20px; 
-    z-index: 9999; /* Higher than everything else */
+    z-index: 9999; /* Forces Navbar to be the "top-most" layer */
 }
 
 .contact-btn {
@@ -85,8 +86,9 @@ body::before {
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     display: inline-block;
-    cursor: pointer;
+    cursor: pointer; /* Ensures mobile knows it's clickable */
 }
+
 .contact-btn:hover { 
     background: var(--blue); 
     color: #fff !important; 
@@ -120,21 +122,4 @@ body::before {
 
 /* --- 6. TEXT STYLING --- */
 h1 { font-size: 3.5rem; margin: 10px 0; letter-spacing: -2px; line-height: 1.1; }
-h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; letter-spacing: 2px; }
-
-/* ... (Existing Certs/Pills styles here) ... */
-
-/* --- 10. RESPONSIVE --- */
-@media (max-width: 1000px) {
-    .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-areas: "hero hero" "cert cert" "metrics api" "arsenal arsenal" "ops ops"; }
-    h1 { font-size: 3rem; }
-}
-@media (max-width: 650px) {
-    .bento-grid { grid-template-columns: 1fr; grid-template-areas: "hero" "cert" "metrics" "api" "arsenal" "ops"; }
-    h1 { font-size: 2.2rem; }
-    .navbar { padding: 10px 15px; width: calc(100% - 20px); }
-    .contact-btn { 
-        padding: 14px 22px; /* Even bigger tap area for mobile */
-        font-size: 0.85rem; 
-    } 
-}
+h
