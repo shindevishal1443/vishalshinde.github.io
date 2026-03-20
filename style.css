@@ -1,4 +1,4 @@
-/* --- VARIABLES --- */
+/* --- 1. CORE VARIABLES & BASE --- */
 :root {
     --bg: #030303;
     --tile: rgba(18, 18, 22, 0.7);
@@ -11,7 +11,6 @@
     --success: #00ff88;
 }
 
-/* --- RESET & BASE --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body { 
@@ -19,9 +18,10 @@ body {
     color: #fff; 
     font-family: 'Plus Jakarta Sans', sans-serif; 
     overflow-x: hidden;
+    line-height: 1.5;
 }
 
-/* --- PREMIUM BACKGROUND --- */
+/* --- 2. PREMIUM BACKGROUND MESH --- */
 .bg-mesh {
     position: fixed; inset: 0; z-index: -1;
     background: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 40%),
@@ -32,116 +32,110 @@ body {
 }
 @keyframes breathe { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 
-/* --- FLOATING PILL NAVBAR --- */
+/* --- 3. REFINED NAVBAR (SCROLL & ALIGNMENT READY) --- */
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 30px; max-width: 900px; margin: 20px auto;
+    padding: 12px 28px; 
+    width: 95%; 
+    max-width: 1110px; /* Aligned with Bento Grid vertical lines */
+    margin: 20px auto;
     border: 1px solid var(--border); border-radius: 100px;
-    backdrop-filter: blur(20px); background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px) saturate(180%); 
+    background: rgba(10, 10, 10, 0.4);
     position: sticky; top: 20px; z-index: 1000;
+    
+    /* Smooth transitions for scroll shrinking */
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 0; animation: fadeInUp 1s ease forwards;
 }
-.logo { font-weight: 800; font-size: 1rem; letter-spacing: -0.5px; }
+
+.logo { font-weight: 800; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
 .logo span { color: var(--blue); }
 
 .nav-right { display: flex; align-items: center; gap: 15px; }
 .header-socials { display: flex; gap: 5px; border-right: 1px solid var(--border); padding-right: 15px; }
 
 .social-link-hdr {
-    color: var(--text-muted); text-decoration: none; font-size: 0.7rem;
-    font-weight: 700; padding: 6px 12px; border-radius: 50px;
+    color: var(--text-muted); text-decoration: none; font-size: 0.65rem;
+    font-weight: 700; padding: 8px 12px; border-radius: 50px;
     transition: 0.3s;
 }
 .social-link-hdr:hover { color: #fff; background: rgba(255,255,255,0.05); }
 
 .contact-btn {
-    background: #fff; color: #000; padding: 8px 20px; 
+    background: #fff; color: #000; padding: 10px 24px; 
     border-radius: 50px; font-weight: 800; text-decoration: none;
-    font-size: 0.8rem; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 0.75rem; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .contact-btn:hover { background: var(--blue); color: #fff; transform: scale(1.05); }
 
-/* --- BENTO GRID --- */
+/* --- 4. BENTO GRID SYSTEM --- */
 .bento-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    max-width: 1200px; margin: 40px auto; padding: 0 20px;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-auto-rows: minmax(100px, auto);
+    gap: 20px;
+    max-width: 1150px; 
+    margin: 40px auto; 
+    padding: 0 20px;
 }
 
 .tile {
+    position: relative; overflow: hidden; /* For scan animation */
     background: var(--tile); border: 1px solid var(--border);
     border-radius: 28px; padding: 30px; backdrop-filter: blur(20px);
     transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     opacity: 0; animation: fadeInUp 0.8s forwards;
 }
+
+/* --- TESTING SCAN ANIMATION --- */
+.tile::after {
+    content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.06), transparent);
+    transform: skewX(-25deg);
+}
+.tile:hover::after { animation: scan 1.5s infinite; }
+@keyframes scan { 0% { left: -100%; } 100% { left: 150%; } }
+
 .tile:hover {
     transform: translateY(-8px) scale(1.01);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(59, 130, 246, 0.4);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.hero { grid-column: span 2; animation-delay: 0.1s; }      
-.cert-tile { grid-row: span 2; animation-delay: 0.2s; } 
-.metrics-tile { animation-delay: 0.3s; }
-.arsenal-tile { grid-column: span 2; animation-delay: 0.5s; }
+/* Specific Grid Mapping */
+.hero { grid-column: 1 / 3; grid-row: span 2; animation-delay: 0.1s; }      
+.cert-tile { grid-column: 3 / 4; grid-row: span 4; animation-delay: 0.2s; } 
+.metrics-tile { grid-column: 1 / 2; animation-delay: 0.3s; }
+.api-tile { grid-column: 2 / 3; animation-delay: 0.4s; } /* New explicit tile */
+.arsenal-tile { grid-column: 1 / 3; animation-delay: 0.5s; }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+/* The "Floating" Section */
+.ops-tile { 
+    grid-column: 3 / 4; 
+    align-self: end; 
+    animation-delay: 0.6s;
 }
 
-/* --- TYPOGRAPHY --- */
-h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 15px 0; line-height: 1; }
-h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; }
+/* --- 5. TYPOGRAPHY & COMPONENTS --- */
+h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); letter-spacing: -2px; margin: 15px 0; line-height: 1; }
+h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; }
 .bio { color: var(--text-muted); line-height: 1.6; font-size: 1.1rem; margin-bottom: 25px; }
 
-/* --- CERTS (SUPER GRADIENTS) --- */
-.cert-list { display: flex; flex-direction: column; gap: 12px; }
-.cert { 
-    text-decoration: none; color: inherit; display: block;
-    padding: 14px 18px; border-radius: 16px; border-left: 4px solid transparent;
-    transition: 0.3s ease;
+.status-ping {
+    display: inline-block; width: 8px; height: 8px; background-color: var(--green);
+    border-radius: 50%; margin-right: 8px; position: relative;
 }
-.cert:hover { transform: translateX(8px); }
-.cert strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
-.cert span { font-size: 0.75rem; color: var(--text-muted); }
-
-.c-blue { background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent); border-left-color: var(--blue); }
-.c-purple { background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent); border-left-color: var(--purple); }
-.c-green { background: linear-gradient(90deg, rgba(45, 182, 124, 0.1), transparent); border-left-color: var(--green); }
-.c-orange { background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent); border-left-color: var(--orange); }
-
-/* --- OPS & CLOUD (FIXED GRID) --- */
-.cloud-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 12px; 
-    margin-top: 10px; 
+.status-ping::after {
+    content: ""; position: absolute; inset: 0; background-color: var(--green);
+    border-radius: 50%; animation: ping 1.5s infinite;
 }
-.cloud-item {
-    background: rgba(255,255,255,0.03); border: 1px solid var(--border); 
-    padding: 15px; border-radius: 16px; text-align: center;
-    font-weight: 800; font-size: 0.8rem; transition: 0.3s;
-}
-.cloud-item:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
-.o-aws { color: #FF9900; } 
-.o-az { color: #0089D6; }
-.o-gcp { color: #4285F4; } 
-.o-sf { color: #00A1E0; }
+@keyframes ping { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
 
-/* --- FOOTER --- */
-footer {
-    max-width: 1200px; margin: 60px auto 40px; padding: 30px 20px;
-    border-top: 1px solid var(--border); text-align: center;
-    opacity: 0; animation: fadeInUp 1s ease forwards; animation-delay: 0.8s;
-}
-.status-indicator { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--green); font-weight: 700; margin-bottom: 10px; }
-.status-dot { width: 8px; height: 8px; background-color: var(--green); border-radius: 50%; box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite; }
-
-/* --- MOBILE --- */
+/* --- 6. MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
     .bento-grid { grid-template-columns: 1fr; }
-    .hero, .arsenal-tile, .cert-tile { grid-column: span 1; }
+    .hero, .cert-tile, .arsenal-tile, .ops-tile { grid-column: auto; grid-row: auto; }
     .header-socials { display: none; }
-    .navbar { width: 95%; padding: 10px 20px; }
-    h1 { font-size: 2.5rem; }
+    .navbar { width: 94%; }
 }
